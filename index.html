@@ -3,128 +3,192 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>日本旅遊推薦</title>
+    <title>Teddy的個人網頁</title>
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./bubble.css" />
   </head>
   <body>
-    <img class="fixed-image" src="./images/富士山2.jpg" alt="fixed image" />
-
-    <header>
-      <section class="logo">
-        <img src="./images/網站Logo.svg" alt="日本旅遊網Logo" />
-        <h1>2024日本旅遊推薦</h1>
-      </section>
-      <nav>
-        <ul>
-          <li>
-            <a href="#"><i class="fa-solid fa-plane"></i> 日本旅遊</a>
-          </li>
-          <li>
-            <a href="#"
-              ><i class="fa-solid fa-right-to-bracket"></i> 會員登入</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-book"></i> 預約行程</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-regular fa-address-book"></i> 聯絡我們</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <nav>
+      <ul>
+        <li><a href="#about-me">關於 Teddy</a></li>
+        <li><a href="./contact.html">聯絡方式</a></li>
+        <li>
+          <a target="_blank" href="./portfolio/圍棋網站/index.html">圍棋網站</a>
+        </li>
+        <li>
+          <a target="_blank" href="./portfolio/japantravel/index.html"
+            >日本旅遊網站</a
+          >
+        </li>
+      </ul>
+    </nav>
 
     <main>
-      <section class="background-img">
-        <div class="filter"></div>
-        <h3>休閒空間 • 特殊假期 <br />安排一趟日本旅遊行程 • 放鬆身心</h3>
-      </section>
-
-      <section class="info-circles">
-        <h3>遊玩主題</h3>
-        <div class="circles">
-          <div class="circle">
-            <img
-              title="北海道美景"
-              src="./images/北海道雪景.jpg"
-              alt="北海道雪景"
-            />
-            <p>北海道美景，美不勝收</p>
-          </div>
-          <div class="circle">
-            <img
-              title="日本道地壽司"
-              src="./images/日本壽司.jpg"
-              alt="日本壽司"
-            />
-            <p>日本道地壽司與美食</p>
-          </div>
-          <div class="circle">
-            <img title="富士山景" src="./images/富士山.jpg" alt="富士山" />
-            <p>富士山風景與溫泉</p>
-          </div>
-          <div class="circle">
-            <img title="清水古寺" src="./images/清水寺.jpg" alt="清水寺" />
-            <p>京都清水寺，千年古都</p>
-          </div>
+      <div id="background-wrap">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble x8"></div>
+        <div class="bubble x9"></div>
+        <div class="bubble x10"></div>
+      </div>
+      <section class="main-area">
+        <div class="info">
+          <h1>嗨，我是Teddy!</h1>
+          <h2 id="about-me">
+            我是一位來自新竹縣的前端網頁工程師，專長在前端網頁相關技術與網頁應用開發、AIoT、雲端資料庫管理等等。
+          </h2>
+          <a href="./contact.html">了解更多</a>
+        </div>
+        <div class="img-area">
+          <img src="./portfolio/Group 1.png" alt="個人照片" />
         </div>
       </section>
+      <section class="about-me">
+        <section class="description">
+          <h2>關於我的一些事情</h2>
+          <p>
+            早年在宏碁電腦提升資訊技術專業，累積電子元件設計檢測經驗。退伍後於旭德科技與三陽工業擔任技術師及PM，強化成本控制、品質管理及系統維護能力。現就讀中華大學資訊工程系，取得NVIDIA與Oracle多項證照，專攻前端開發，致力成為專業全端工程師，運用所學技能創造優質用戶體驗。
+          </p>
 
-      <section class="empty-container">
-        <h3>今天就開始規劃行程，找到最適合的方案。</h3>
+          <div class="progress-bar-area">
+            <p>JavaScript，Web Dvelopment</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 40%"
+              ></div>
+            </div>
+            <p>React</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 10%"
+              ></div>
+            </div>
+            <p>Cloud Database</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 40%"
+              ></div>
+            </div>
+            <p>Node.js</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 10%"
+              ></div>
+            </div>
+            <p>MySQL</p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 10%"
+              ></div>
+            </div>
+          </div>
+        </section>
       </section>
-
-      <section class="google-map">
-        <h3>日本地理位置</h3>
-        <p>
-          日本地理位置上屬於東北亞，東鄰太平洋，西以日本海、朝鮮海峽、東海與歐亞大陸的西伯利亞、朝鮮半島、中國大陸鄰接，南以菲律賓海與台灣、馬來亞納群島鄰接，北以宗谷海峽、鄂霍次克海與庫頁島、千島群島鄰接。日本一年四季都是舒爽宜人的氣候、四季變化分明。南部暖和，越往北部越冷。特別是冬天吹西北季風，在日本海側會下很多雪。另一方面，在太平洋側會持續被稱為冬晴的乾燥晴天。
-        </p>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27826211.11127399!2d115.73583458674786!3d31.640577382358327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2z5pel5pys!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+      <section class="resume">
+        <section class="table">
+          <table>
+            <tr style="border-top: 2px solid gray">
+              <td style="width: 20%">自我簡介</td>
+              <td style="width: 80%">
+                全力以赴，貢獻所學，並不斷提升自我，為達成目標
+              </td>
+            </tr>
+            <tr>
+              <td>學歷</td>
+              <td>中華大學資訊工程學系</td>
+            </tr>
+            <tr>
+              <td>經歷</td>
+              <td>
+                <ol>
+                  <li>宏碁電腦客服部專員</li>
+                  <li>威策電腦客服工程師</li>
+                  <li>仁慈醫院資訊工程師</li>
+                  <li>三陽工業零件工程師</li>
+                </ol>
+              </td>
+            </tr>
+            <tr>
+              <td>語言</td>
+              <td>
+                <ul>
+                  <li>中文:精通</li>
+                  <li>英文:中等</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>專長</td>
+              <td>
+                <img src="./portfolio/ICONS/icons8-html-5.svg" alt="HTML5" />
+                <img src="./portfolio/ICONS/icons8-css3.svg" alt="CSS3" />
+                <img
+                  src="./portfolio/ICONS/icons8-javascript.svg"
+                  alt="JavaScript"
+                />
+                <img
+                  src="./portfolio/ICONS/icons8-react-native.svg"
+                  alt="React"
+                />、物聯網、雲端資料庫管理。
+              </td>
+            </tr>
+            <tr>
+              <td>開發經驗</td>
+              <td>
+                我目前開發兩個網頁前端專案，分別是日本旅遊推薦以及圍棋資訊網，用Figma畫出網頁架構，設計使用者介面UI/UX、用HTML做出網頁架構、CSS將網頁前端美化以及提升使用者外觀。
+              </td>
+            </tr>
+          </table>
+        </section>
+        <section class="picture">
+          <img src="./portfolio/S__99401730.jpg" alt="個人照片" />
+          <div class="greenRect"></div>
+          <div class="greenRect2"></div>
+          <div class="greenRect3"></div>
+        </section>
       </section>
     </main>
-
-    <footer>
-      <section class="logo">
-        <img src="./images/網站Logo.svg" alt="logo" />
-        <h3>2024日本旅遊推薦</h3>
-      </section>
-
-      <section class="links">
-        <a href="#"><img src="./Icons/facebook.svg" alt="facebook" /></a>
-        <a href="#"><img src="./Icons/instagram.svg" alt="instagram" /></a>
-        <a href="#"><img src="./Icons/twitter.svg" alt="twitter" /></a>
-        <a href="#"><img src="./Icons/youtube.svg" alt="youtube" /></a>
-      </section>
-    </footer>
-
-    <script>
-      setInterval(() => {
-        let topBackground = document.querySelector("section.background-img");
-        if (
-          topBackground.style.backgroundImage == 'url("../images/日本櫻花.jpg")'
-        ) {
-          topBackground.style.backgroundImage = 'url("../images/京都古城.jpg")';
-        } else if (
-          topBackground.style.backgroundImage == 'url("../images/京都古城.jpg")'
-        ) {
-          topBackground.style.backgroundImage = 'url("../images/大阪街頭.jpg")';
-        } else {
-          topBackground.style.backgroundImage = 'url("../images/日本櫻花.jpg")';
-        }
-      }, 3000);
-    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./app.js"></script>
   </body>
 </html>
