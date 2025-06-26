@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>聯絡我們 - 日本旅遊推薦</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      .contact-section {
+        padding: 3rem 0;
+        background: linear-gradient(135deg, rgba(173, 216, 230, 0.3), rgba(135, 206, 235, 0.2), rgba(240,248,255,0.9));
+        backdrop-filter: blur(10px);
+      }
+      
+      .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      
+      .contact-title {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      
+      .contact-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      
+      .contact-info h3 {
+        color: #e74c3c;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+      }
+      
+      .contact-info .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background: rgba(173, 216, 230, 0.2);
+        border-radius: 8px;
+      }
+      
+      .contact-info .contact-item i {
+        color: #4a90e2;
+        width: 20px;
+        margin-right: 1rem;
+      }
+      
+      .contact-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      
+      .contact-form h3 {
+        color: #e74c3c;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+        font-weight: 600;
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #ecf0f1;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+      
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #e74c3c;
+      }
+      
+      .submit-btn {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+      
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+      }
+      
+      .business-hours {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: center;
+        margin-top: 2rem;
+      }
+      
+      .business-hours h3 {
+        color: #e74c3c;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hours-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        text-align: left;
+      }
+      
+      .hours-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        border-bottom: 1px solid #ecf0f1;
+      }
+      
+      .home-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+      
+      .home-btn.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .home-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+      
+      .home-btn i {
+        font-size: 1.2rem;
+      }
+
+      /* 強制移除footer聯絡資訊的白色背景 */
+      footer .footer-contact {
+        background: none !important;
+      }
+      
+      footer .footer-contact .contact-info {
+        background: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .hours-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .home-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+        
+        .home-btn i {
+          font-size: 1rem;
+        }
+        
+
+      }
+    </style>
+  </head>
+  <body>
+    <img class="fixed-image" src="./images/富士山2.jpg" alt="fixed image" />
+
+    <header>
+      <section class="logo">
+        <a href="./index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+          <div class="logo-icon">
+            <i class="fa-solid fa-torii-gate"></i>
+          </div>
+          <h1>2025日本旅遊推薦</h1>
+        </a>
+      </section>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="./attractions.html"><i class="fa-solid fa-map-location-dot"></i> 景點推薦</a>
+          </li>
+          <li>
+            <a href="./login.html"><i class="fa-solid fa-user-circle"></i> 會員登入</a>
+          </li>
+          <li>
+            <a href="./booking.html"><i class="fa-solid fa-calendar-check"></i> 預約行程</a>
+          </li>
+          <li>
+            <a href="./contact.html" class="active"><i class="fa-solid fa-headset"></i> 聯絡我們</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="contact-section">
+        <div class="contact-container">
+          <h2 class="contact-title">聯絡我們</h2>
+          
+          <div class="contact-grid">
+            <div class="contact-info">
+              <h3><i class="fa-solid fa-address-card"></i> 聯絡資訊</h3>
+              
+              <div class="contact-item">
+                <i class="fa-solid fa-user"></i>
+                <div>
+                  <strong>負責人：</strong>彭雲錕
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                  <strong>Email：</strong>
+                  <a href="mailto:teddy135790196@gmail.com" style="color: #e74c3c; text-decoration: none;">
+                    teddy135790196@gmail.com
+                  </a>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                  <strong>服務專線：</strong>03-1234-5678
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>服務地區：</strong>新竹縣及全台灣
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <i class="fa-solid fa-globe"></i>
+                <div>
+                  <strong>專業領域：</strong>日本旅遊規劃、行程安排、文化導覽
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form">
+              <h3><i class="fa-solid fa-paper-plane"></i> 立即諮詢</h3>
+              <form>
+                <div class="form-group">
+                  <label for="name">姓名 *</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">電子信箱 *</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">聯絡電話</label>
+                  <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                  <label for="travel-date">預計出發日期</label>
+                  <input type="date" id="travel-date" name="travel-date">
+                </div>
+                
+                <div class="form-group">
+                  <label for="message">旅遊需求與問題 *</label>
+                  <textarea id="message" name="message" rows="5" placeholder="請告訴我們您的旅遊需求、想去的地點、人數、預算等詳細資訊..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i> 送出諮詢
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="business-hours">
+            <h3><i class="fa-solid fa-clock"></i> 服務時間</h3>
+            <div class="hours-grid">
+              <div class="hours-item">
+                <span>週一至週五</span>
+                <span>09:00 - 18:00</span>
+              </div>
+              <div class="hours-item">
+                <span>週六</span>
+                <span>09:00 - 17:00</span>
+              </div>
+              <div class="hours-item">
+                <span>週日</span>
+                <span>10:00 - 16:00</span>
+              </div>
+              <div class="hours-item">
+                <span>國定假日</span>
+                <span>休息</span>
+              </div>
+            </div>
+            <p style="margin-top: 1rem; color: #7f8c8d; font-size: 0.9rem;">
+              * 緊急諮詢請直接發送 Email，我們會在 24 小時內回覆
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 回到首頁浮動按鈕 -->
+    <a href="./index.html" class="home-btn" id="homeBtn" title="回到首頁">
+      <i class="fa-solid fa-home"></i>
+    </a>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-section">
+            <div class="footer-logo-icon">
+              <i class="fa-solid fa-torii-gate"></i>
+            </div>
+            <h3>2025日本旅遊推薦</h3>
+          </div>
+          <p class="footer-description">
+            專業的日本旅遊規劃服務，為您量身打造最完美的日本之旅。從北海道的雪國風情到九州的溫泉文化，我們帶您深度體驗日本的四季之美。
+          </p>
+          <div class="social-links">
+            <a href="#" title="Facebook"><img src="./Icons/facebook.svg" alt="facebook" /></a>
+            <a href="#" title="Instagram"><img src="./Icons/instagram.svg" alt="instagram" /></a>
+            <a href="#" title="Twitter"><img src="./Icons/twitter.svg" alt="twitter" /></a>
+            <a href="#" title="YouTube"><img src="./Icons/youtube.svg" alt="youtube" /></a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4>快速導覽</h4>
+          <ul>
+            <li><a href="./attractions.html"><i class="fa-solid fa-plane"></i>景點推薦</a></li>
+            <li><a href="./booking.html"><i class="fa-solid fa-book"></i>預約行程</a></li>
+            <li><a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i>會員登入</a></li>
+            <li><a href="./contact.html"><i class="fa-regular fa-address-book"></i>聯絡我們</a></li>
+            <li><a href="../北海道旅遊網站/index.html" target="_blank"><i class="fa-solid fa-snowflake"></i>北海道專區</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>彭雲錕</a></li>
+            <li><a href="#"><i class="fa-solid fa-location-dot"></i>新竹縣</a></li>
+            <li><a href="mailto:teddy135790196@gmail.com"><i class="fa-solid fa-envelope"></i>teddy135790196@gmail.com</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i>週一至週五 09:00-18:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2025 日本旅遊推薦. All rights reserved.</p>
+        <p class="credits">由 彭雲錕 規劃設計 | 專業日本旅遊服務</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script>
+      // 表單提交處理
+      document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 獲取表單數據
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        // 簡單驗證
+        if (!name || !email || !message) {
+          alert('請填寫必填欄位！');
+          return;
+        }
+        
+        // 模擬發送郵件
+        alert('感謝您的諮詢！我們會在 24 小時內回覆您。');
+        this.reset();
+      });
+      
+      // 回到首頁按鈕顯示/隱藏
+      const homeBtn = document.getElementById('homeBtn');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 300) {
+          homeBtn.classList.add('show');
+        } else {
+          homeBtn.classList.remove('show');
+        }
+      });
+    </script>
+  </body>
+</html> 
