@@ -6,7 +6,7 @@
     <title>Teddy的個人網頁</title>
     <meta name="description" content="Teddy - 軟體工程師，專長物聯網開發、網頁技術與AIoT應用" />
     <meta name="keywords" content="軟體工程師,物聯網,網頁開發,AIoT,雲端資料庫" />
-    
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -14,7 +14,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    
+
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
@@ -23,10 +23,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./bubble.css" />
+    <link rel="stylesheet" href="/teddy.github.io/styles/style.css" />
+    <link rel="stylesheet" href="/teddy.github.io/bubble.css" />
     <!-- Chart.js CDN for radar chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -35,19 +35,19 @@
     <nav>
       <ul>
         <li><a href="#about-me"><i class="fas fa-user"></i> 關於 Teddy</a></li>
-        <li><a href="./contact.html"><i class="fas fa-envelope"></i> 聯絡方式</a></li>
+        <li><a href="/teddy.github.io/contact.html"><i class="fas fa-envelope"></i> 聯絡方式</a></li>
         <li>
-          <a target="_blank" href="./portfolio/圍棋網站/index.html">
+          <a target="_blank" href="/teddy.github.io/portfolio/圍棋網站/index.html">
             <i class="fas fa-chess"></i> 圍棋網站 (切版)
           </a>
         </li>
         <li>
-          <a target="_blank" href="./portfolio/日本旅遊推薦網站/index.html">
-            <i class="fas fa-map-marked-alt"></i> 日本旅遊推薦 (BootStrap) 
+          <a target="_blank" href="/teddy.github.io/portfolio/日本旅遊推薦網站/index.html">
+            <i class="fas fa-map-marked-alt"></i> 日本旅遊推薦 (BootStrap)
           </a>
         </li>
         <li>
-          <a target="_blank" href="./portfolio/北海道旅遊網站/index.html">
+          <a target="_blank" href="/teddy.github.io/portfolio/北海道旅遊網站/index.html">
             <i class="fas fa-snowflake"></i> 北海道旅遊 (板模)
           </a>
         </li>
@@ -68,17 +68,17 @@
         <div class="bubble x9"></div>
         <div class="bubble x10"></div>
       </div>
-      
+
       <!-- 主要介紹區域 -->
       <section class="main-area">
         <div class="img-area">
-          <img src="./portfolio/Group 1.png" alt="學士照" />
+          <img src="/teddy.github.io/portfolio/Group 1.png" alt="學士照" />
         </div>
         <div class="info">
           <h1>Hi，I'm Teddy!</h1>
           <div class="motto">「用技術改變生活，讓世界更美好。」</div>
           <div id="typewriter" class="typewriter"></div>
-          <a href="./contact.html">
+          <a href="/teddy.github.io/contact.html">
             <i class="fas fa-arrow-right"></i> 了解更多
           </a>
           <div class="social-links">
@@ -90,7 +90,7 @@
           </div>
         </div>
       </section>
-      
+
       <!-- 精選專案區 -->
       <section class="featured-projects">
         <h2><i class="fas fa-star"></i> 精選專案</h2>
@@ -99,13 +99,13 @@
             <div class="project-icon"><i class="fas fa-map-marked-alt"></i></div>
             <h3>日本旅遊推薦網站</h3>
             <p>結合現代化UI/UX設計，提供日本熱門景點、行程預約與互動地圖。</p>
-            <a href="./portfolio/日本旅遊推薦網站/index.html" target="_blank">查看專案</a>
+            <a href="/teddy.github.io/portfolio/日本旅遊推薦網站/index.html" target="_blank">查看專案</a>
           </div>
           <div class="project-card">
             <div class="project-icon"><i class="fas fa-chess-board"></i></div>
             <h3>圍棋資訊網站</h3>
             <p>圍棋知識、棋譜分享與互動教學，適合初學者與愛好者。</p>
-            <a href="./portfolio/圍棋網站/index.html" target="_blank">查看專案</a>
+            <a href="/teddy.github.io/portfolio/圍棋網站/index.html" target="_blank">查看專案</a>
           </div>
           <div class="project-card">
             <div class="project-icon"><i class="fas fa-cloud"></i></div>
@@ -115,9 +115,9 @@
           </div>
         </div>
       </section>
-      
+
       <!-- 關於我區域 -->
-      <section class="about-me">
+      <section class="about-me" id="about-me">
         <div class="description">
           <h2>關於我的一些事情</h2>
           <p>
@@ -126,76 +126,42 @@
 
           <div class="progress-bar-area">
             <h3><i class="fas fa-code"></i> 技術技能</h3>
-            
+
             <div class="skill-item">
               <p><i class="fab fa-js-square"></i> JavaScript，Web Development</p>
               <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated"
-                  role="progressbar"
-                  aria-valuenow="40"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: 40%"
-                ></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 40%"></div>
               </div>
             </div>
-            
+
             <div class="skill-item">
               <p><i class="fab fa-vuejs"></i> Vue</p>
               <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                  role="progressbar"
-                  aria-valuenow="20"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: 20%"
-                ></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 20%"></div>
               </div>
             </div>
-            
+
             <div class="skill-item">
               <p><i class="fas fa-server"></i> 後端技術</p>
               <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                  role="progressbar"
-                  aria-valuenow="20"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: 20%"
-                ></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 20%"></div>
               </div>
             </div>
-            
+
             <div class="skill-item">
               <p><i class="fas fa-microchip"></i> 物聯網開發</p>
               <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                  role="progressbar"
-                  aria-valuenow="80"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: 80%"
-                ></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 80%"></div>
               </div>
             </div>
-            
+
             <div class="skill-item">
               <p><i class="fas fa-database"></i> MySQL</p>
               <div class="progress">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                  role="progressbar"
-                  aria-valuenow="20"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: 20%"
-                ></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 20%"></div>
               </div>
             </div>
+
             <!-- 技能雷達圖 -->
             <div class="radar-chart-container">
               <canvas id="skillsRadar" width="350" height="350" aria-label="技能雷達圖" role="img"></canvas>
@@ -203,7 +169,7 @@
           </div>
         </div>
       </section>
-      
+
       <!-- 履歷區域 -->
       <section class="brand-highlight">
         <h2><i class="fas fa-user-tie"></i> 我的專業亮點</h2>
@@ -215,19 +181,8 @@
           <li><i class="fas fa-users"></i> 團隊協作與CI/CD自動化部屬實戰</li>
         </ul>
         <div class="skills-badges">
-          <span>JavaScript</span>
-          <span>Vue</span>
-          <span>Node.js</span>
-          <span>React Native</span>
-          <span>MySQL</span>
-          <span>Azure</span>
-          <span>Jetson Nano</span>
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>Git</span>
-          <span>BootStrap</span>
-          <span>MariaDB</span>
-          <span>Oracle Cloud</span>
+          <span>JavaScript</span><span>Vue</span><span>Node.js</span><span>React Native</span><span>MySQL</span>
+          <span>Azure</span><span>Jetson Nano</span><span>HTML</span><span>CSS</span><span>Git</span><span>BootStrap</span><span>MariaDB</span><span>Oracle Cloud</span>
         </div>
         <div class="cert-badges">
           <span><i class="fas fa-certificate"></i> NVIDIA AI Jetson Nano</span>
@@ -237,19 +192,15 @@
         <div class="brand-motto">「持續學習，跨界整合，讓技術創造價值！」</div>
       </section>
     </main>
-    
+
     <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Custom JS -->
-    <script src="./app.js"></script>
+    <script src="/teddy.github.io/app.js"></script>
+
     <!-- Chart.js Radar Chart & Typewriter Script -->
     <script>
-      // 打字機動畫
       const typewriterText = "我是一位來自新竹縣的軟體工程師，專長在物聯網開發、網頁相關技術與網頁應用開發、AIoT、雲端資料庫管理等等。";
       const typewriterEl = document.getElementById('typewriter');
       let i = 0;
@@ -262,7 +213,6 @@
       }
       typeWriter();
 
-      // 技能雷達圖
       const ctx = document.getElementById('skillsRadar').getContext('2d');
       new Chart(ctx, {
         type: 'radar',
@@ -298,4 +248,5 @@
     </script>
   </body>
 </html>
+
 
