@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>預約行程 - 日本旅遊推薦</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      .booking-container {
+        background: white;
+        padding: 2rem 0;
+        min-height: 100vh;
+      }
+      
+      .booking-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, rgba(173, 216, 230, 0.3), rgba(135, 206, 235, 0.2), rgba(240,248,255,0.9));
+      }
+      
+      .booking-title {
+        color: #4a90e2;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .booking-subtitle {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .booking-form-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      
+      .booking-steps {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      
+      .step {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: white;
+        border: 2px solid #ecf0f1;
+        border-radius: 25px;
+        color: #7f8c8d;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      .step.active {
+        background: #e74c3c;
+        border-color: #e74c3c;
+        color: white;
+      }
+      
+      .step.completed {
+        background: #27ae60;
+        border-color: #27ae60;
+        color: white;
+      }
+      
+      .step-number {
+        background: rgba(255,255,255,0.2);
+        color: inherit;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.8rem;
+        font-size: 0.9rem;
+      }
+      
+      .booking-form {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+      }
+      
+      .form-section {
+        margin-bottom: 3rem;
+      }
+      
+      .section-title {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #4a90e2;
+        display: inline-block;
+      }
+      
+      .tour-packages {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .package-card {
+        border: 2px solid #ecf0f1;
+        border-radius: 15px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .package-card:hover {
+        border-color: #4a90e2;
+        box-shadow: 0 5px 15px rgba(74,144,226,0.2);
+      }
+      
+      .package-card.selected {
+        border-color: #4a90e2;
+        background: rgba(173, 216, 230, 0.2);
+      }
+      
+      .package-name {
+        color: #2c3e50;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      
+      .package-duration {
+        color: #4a90e2;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      
+      .package-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .package-features li {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+        padding-left: 1.2rem;
+        position: relative;
+      }
+      
+      .package-features li::before {
+        content: '✓';
+        color: #27ae60;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+      
+      .package-price {
+        color: #4a90e2;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+      }
+      
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .form-group label {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 0.8rem;
+        border: 2px solid #ecf0f1;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+      
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #e74c3c;
+      }
+      
+      .counter-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .counter {
+        display: flex;
+        align-items: center;
+        border: 2px solid #ecf0f1;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      
+      .counter button {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      
+      .counter button:hover {
+        background: #c0392b;
+      }
+      
+      .counter input {
+        border: none;
+        text-align: center;
+        width: 60px;
+        padding: 0.8rem 0.5rem;
+        background: white;
+      }
+      
+      .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1.2rem;
+        border: 2px solid #ecf0f1;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .checkbox-item:hover {
+        border-color: #e74c3c;
+        background: rgba(231,76,60,0.05);
+      }
+      
+      .checkbox-item input[type="checkbox"] {
+        margin-right: 0.5rem;
+      }
+      
+      .price-summary {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+      
+      .price-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+      
+      .price-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid rgba(255,255,255,0.3);
+      }
+      
+      .submit-btn {
+        background: linear-gradient(135deg, #27ae60, #229954);
+        color: white;
+        padding: 1.2rem 3rem;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 2rem;
+      }
+      
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(39,174,96,0.3);
+      }
+      
+      .home-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+      
+      .home-btn.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .home-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+      
+      .home-btn i {
+        font-size: 1.2rem;
+      }
+      
+      @media (max-width: 768px) {
+        .booking-title {
+          font-size: 2rem;
+        }
+        
+        .booking-form {
+          padding: 2rem 1.5rem;
+        }
+        
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        
+        .tour-packages {
+          grid-template-columns: 1fr;
+        }
+        
+        .booking-steps {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .home-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+        
+        .home-btn i {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img class="fixed-image" src="./images/富士山2.jpg" alt="fixed image" />
+
+    <header>
+      <section class="logo">
+        <a href="./index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+          <div class="logo-icon">
+            <i class="fa-solid fa-torii-gate"></i>
+          </div>
+          <h1>2025日本旅遊景點推薦</h1>
+        </a>
+      </section>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="./attractions.html"><i class="fa-solid fa-map-location-dot"></i> 景點推薦</a>
+          </li>
+          <li>
+            <a href="./login.html"><i class="fa-solid fa-user-circle"></i> 會員登入</a>
+          </li>
+          <li>
+            <a href="./booking.html" class="active"><i class="fa-solid fa-calendar-check"></i> 預約行程</a>
+          </li>
+          <li>
+            <a href="./contact.html"><i class="fa-solid fa-headset"></i> 聯絡我們</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="booking-container">
+      <div class="booking-header">
+        <h1 class="booking-title">預約行程</h1>
+        <p class="booking-subtitle">
+          選擇您心儀的日本旅遊行程，我們將為您量身打造難忘的旅行體驗
+        </p>
+      </div>
+
+      <div class="booking-form-container">
+        <div class="booking-steps">
+          <div class="step active">
+            <span class="step-number">1</span>
+            選擇行程
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            旅行詳情
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            個人資訊
+          </div>
+          <div class="step">
+            <span class="step-number">4</span>
+            確認預約
+          </div>
+        </div>
+
+        <form class="booking-form" id="bookingForm">
+          <!-- 第一步：選擇行程 -->
+          <div class="form-section" id="step1">
+            <h2 class="section-title"><i class="fa-solid fa-route"></i> 選擇旅遊套餐</h2>
+            <div class="tour-packages">
+              <div class="package-card" data-package="tokyo-classic" data-price="35000">
+                <h3 class="package-name">東京經典之旅</h3>
+                <p class="package-duration"><i class="fa-solid fa-clock"></i> 5天4夜</p>
+                <ul class="package-features">
+                  <li>淺草寺・雷門參拜</li>
+                  <li>東京晴空塔登頂</li>
+                  <li>築地市場美食體驗</li>
+                  <li>銀座購物之旅</li>
+                  <li>迪士尼樂園一日券</li>
+                </ul>
+                <div class="package-price">NT$ 35,000</div>
+              </div>
+
+              <div class="package-card" data-package="kyoto-culture" data-price="42000">
+                <h3 class="package-name">京都文化深度遊</h3>
+                <p class="package-duration"><i class="fa-solid fa-clock"></i> 6天5夜</p>
+                <ul class="package-features">
+                  <li>清水寺・金閣寺巡禮</li>
+                  <li>嵐山竹林散步</li>
+                  <li>茶道文化體驗</li>
+                  <li>祇園藝妓街探訪</li>
+                  <li>奈良一日遊</li>
+                </ul>
+                <div class="package-price">NT$ 42,000</div>
+              </div>
+
+              <div class="package-card" data-package="hokkaido-nature" data-price="48000">
+                <h3 class="package-name">北海道自然風光</h3>
+                <p class="package-duration"><i class="fa-solid fa-clock"></i> 7天6夜</p>
+                <ul class="package-features">
+                  <li>札幌市區觀光</li>
+                  <li>小樽運河浪漫遊</li>
+                  <li>富良野薰衣草田</li>
+                  <li>登別溫泉體驗</li>
+                  <li>函館夜景欣賞</li>
+                </ul>
+                <div class="package-price">NT$ 48,000</div>
+              </div>
+
+              <div class="package-card" data-package="osaka-universal" data-price="38000">
+                <h3 class="package-name">大阪環球影城</h3>
+                <p class="package-duration"><i class="fa-solid fa-clock"></i> 5天4夜</p>
+                <ul class="package-features">
+                  <li>環球影城兩日券</li>
+                  <li>大阪城天守閣</li>
+                  <li>道頓堀美食街</li>
+                  <li>心齋橋購物</li>
+                  <li>神戶一日遊</li>
+                </ul>
+                <div class="package-price">NT$ 38,000</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第二步：旅行詳情 -->
+          <div class="form-section" id="step2" style="display: none;">
+            <h2 class="section-title"><i class="fa-solid fa-calendar-days"></i> 旅行詳情</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="departure-date">出發日期 *</label>
+                <input type="date" id="departure-date" name="departure-date" required>
+              </div>
+              <div class="form-group">
+                <label for="return-date">回程日期 *</label>
+                <input type="date" id="return-date" name="return-date" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>旅客人數</label>
+                <div class="counter-group">
+                  <span>成人：</span>
+                  <div class="counter">
+                    <button type="button" onclick="decreaseCount('adults')">-</button>
+                    <input type="number" id="adults" name="adults" value="2" min="1" max="10" readonly>
+                    <button type="button" onclick="increaseCount('adults')">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <div class="counter-group">
+                  <span>兒童：</span>
+                  <div class="counter">
+                    <button type="button" onclick="decreaseCount('children')">-</button>
+                    <input type="number" id="children" name="children" value="0" min="0" max="5" readonly>
+                    <button type="button" onclick="increaseCount('children')">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>額外服務（可多選）</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="guide" data-price="5000">
+                  中文導遊服務 (+NT$ 5,000)
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="wifi" data-price="800">
+                  WiFi分享器 (+NT$ 800)
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="insurance" data-price="1200">
+                  旅遊保險 (+NT$ 1,200)
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="transport" data-price="8000">
+                  機場接送 (+NT$ 8,000)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第三步：個人資訊 -->
+          <div class="form-section" id="step3" style="display: none;">
+            <h2 class="section-title"><i class="fa-solid fa-user"></i> 聯絡資訊</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name">姓名 *</label>
+                <input type="text" id="full-name" name="full-name" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">聯絡電話 *</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">電子信箱 *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="emergency-contact">緊急聯絡人</label>
+                <input type="text" id="emergency-contact" name="emergency-contact">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="special-requests">特殊需求</label>
+              <textarea id="special-requests" name="special-requests" rows="4" placeholder="請告知我們任何特殊需求，例如：飲食限制、行動不便、特殊慶祝等..."></textarea>
+            </div>
+          </div>
+
+          <!-- 第四步：確認預約 -->
+          <div class="form-section" id="step4" style="display: none;">
+            <h2 class="section-title"><i class="fa-solid fa-check-circle"></i> 預約確認</h2>
+            
+            <div class="price-summary">
+              <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">
+                <i class="fa-solid fa-calculator"></i> 費用明細
+              </h3>
+              <div class="price-item">
+                <span>基本套餐</span>
+                <span id="base-price">NT$ 0</span>
+              </div>
+              <div class="price-item">
+                <span>兒童費用 (8折)</span>
+                <span id="children-price">NT$ 0</span>
+              </div>
+              <div class="price-item">
+                <span>額外服務</span>
+                <span id="services-price">NT$ 0</span>
+              </div>
+              <div class="price-total">
+                <span>總計金額</span>
+                <span id="total-price">NT$ 0</span>
+              </div>
+            </div>
+
+            <div id="booking-summary" style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+              <h4 style="color: #2c3e50; margin-bottom: 1rem;">預約摘要</h4>
+              <div id="summary-content"></div>
+            </div>
+          </div>
+
+          <!-- 導航按鈕 -->
+          <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+            <button type="button" id="prevBtn" onclick="changeStep(-1)" style="display: none;" class="btn btn-secondary">
+              <i class="fa-solid fa-arrow-left"></i> 上一步
+            </button>
+            <button type="button" id="nextBtn" onclick="changeStep(1)" class="btn btn-primary" style="margin-left: auto;">
+              下一步 <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button type="submit" id="submitBtn" class="submit-btn" style="display: none;">
+              <i class="fa-solid fa-paper-plane"></i> 確認預約
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- 回到首頁浮動按鈕 -->
+    <a href="./index.html" class="home-btn" id="homeBtn" title="回到首頁">
+      <i class="fa-solid fa-home"></i>
+    </a>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-section">
+            <div class="footer-logo-icon">
+              <i class="fa-solid fa-torii-gate"></i>
+            </div>
+            <h3>2025日本旅遊推薦</h3>
+          </div>
+          <p class="footer-description">
+            專業的日本旅遊規劃服務，為您量身打造最完美的日本之旅。從北海道的雪國風情到九州的溫泉文化，我們帶您深度體驗日本的四季之美。
+          </p>
+          <div class="social-links">
+            <a href="#" title="Facebook"><img src="./Icons/facebook.svg" alt="facebook" /></a>
+            <a href="#" title="Instagram"><img src="./Icons/instagram.svg" alt="instagram" /></a>
+            <a href="#" title="Twitter"><img src="./Icons/twitter.svg" alt="twitter" /></a>
+            <a href="#" title="YouTube"><img src="./Icons/youtube.svg" alt="youtube" /></a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4>快速導覽</h4>
+          <ul>
+            <li><a href="./attractions.html"><i class="fa-solid fa-plane"></i>景點推薦</a></li>
+            <li><a href="./booking.html"><i class="fa-solid fa-book"></i>預約行程</a></li>
+            <li><a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i>會員登入</a></li>
+            <li><a href="./contact.html"><i class="fa-regular fa-address-book"></i>聯絡我們</a></li>
+            <li><a href="../北海道旅遊網站/index.html" target="_blank"><i class="fa-solid fa-snowflake"></i>北海道專區</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>彭雲錕</a></li>
+            <li><a href="#"><i class="fa-solid fa-location-dot"></i>新竹縣</a></li>
+            <li><a href="mailto:teddy135790196@gmail.com"><i class="fa-solid fa-envelope"></i>teddy135790196@gmail.com</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i>週一至週五 09:00-18:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2025 日本旅遊推薦. All rights reserved.</p>
+        <p class="credits">由 彭雲錕 規劃設計 | 專業日本旅遊服務</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script>
+      let currentStep = 1;
+      let selectedPackage = null;
+      let basePrice = 0;
+
+      // 套餐選擇
+      document.querySelectorAll('.package-card').forEach(card => {
+        card.addEventListener('click', function() {
+          // 移除其他選中狀態
+          document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+          // 添加選中狀態
+          this.classList.add('selected');
+          
+          selectedPackage = this.dataset.package;
+          basePrice = parseInt(this.dataset.price);
+          updatePricing();
+        });
+      });
+
+      // 步驟切換
+      function changeStep(direction) {
+        const totalSteps = 4;
+        
+        if (direction === 1) {
+          // 驗證當前步驟
+          if (currentStep === 1 && !selectedPackage) {
+            alert('請選擇一個旅遊套餐！');
+            return;
+          }
+          
+          if (currentStep === 2) {
+            const departureDate = document.getElementById('departure-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            
+            if (!departureDate || !returnDate) {
+              alert('請選擇出發和回程日期！');
+              return;
+            }
+            
+            if (new Date(departureDate) >= new Date(returnDate)) {
+              alert('回程日期必須晚於出發日期！');
+              return;
+            }
+          }
+          
+          if (currentStep === 3) {
+            const fullName = document.getElementById('full-name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            if (!fullName || !phone || !email) {
+              alert('請填寫所有必填欄位！');
+              return;
+            }
+          }
+        }
+        
+        // 隱藏當前步驟
+        document.getElementById(`step${currentStep}`).style.display = 'none';
+        
+        // 更新步驟
+        currentStep += direction;
+        
+        if (currentStep < 1) currentStep = 1;
+        if (currentStep > totalSteps) currentStep = totalSteps;
+        
+        // 顯示新步驟
+        document.getElementById(`step${currentStep}`).style.display = 'block';
+        
+        // 更新步驟指示器
+        updateStepIndicator();
+        
+        // 更新按鈕
+        updateButtons();
+        
+        // 如果是最後一步，更新摘要
+        if (currentStep === 4) {
+          updateBookingSummary();
+          updatePricing();
+        }
+      }
+
+      function updateStepIndicator() {
+        const steps = document.querySelectorAll('.step');
+        steps.forEach((step, index) => {
+          step.classList.remove('active', 'completed');
+          if (index + 1 < currentStep) {
+            step.classList.add('completed');
+          } else if (index + 1 === currentStep) {
+            step.classList.add('active');
+          }
+        });
+      }
+
+      function updateButtons() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+        nextBtn.style.display = currentStep < 4 ? 'block' : 'none';
+        submitBtn.style.display = currentStep === 4 ? 'block' : 'none';
+      }
+
+      // 人數計數器
+      function increaseCount(type) {
+        const input = document.getElementById(type);
+        const max = parseInt(input.max);
+        if (parseInt(input.value) < max) {
+          input.value = parseInt(input.value) + 1;
+          updatePricing();
+        }
+      }
+
+      function decreaseCount(type) {
+        const input = document.getElementById(type);
+        const min = parseInt(input.min);
+        if (parseInt(input.value) > min) {
+          input.value = parseInt(input.value) - 1;
+          updatePricing();
+        }
+      }
+
+      // 價格計算
+      function updatePricing() {
+        if (!selectedPackage) return;
+        
+        const adults = parseInt(document.getElementById('adults').value) || 0;
+        const children = parseInt(document.getElementById('children').value) || 0;
+        
+        // 基本費用
+        const adultPrice = adults * basePrice;
+        const childPrice = children * (basePrice * 0.8); // 兒童8折
+        
+        // 額外服務費用
+        let servicesPrice = 0;
+        document.querySelectorAll('input[name="services"]:checked').forEach(service => {
+          servicesPrice += parseInt(service.dataset.price);
+        });
+        
+        const totalPrice = adultPrice + childPrice + servicesPrice;
+        
+        // 更新顯示
+        document.getElementById('base-price').textContent = `NT$ ${adultPrice.toLocaleString()}`;
+        document.getElementById('children-price').textContent = `NT$ ${childPrice.toLocaleString()}`;
+        document.getElementById('services-price').textContent = `NT$ ${servicesPrice.toLocaleString()}`;
+        document.getElementById('total-price').textContent = `NT$ ${totalPrice.toLocaleString()}`;
+      }
+
+      // 更新預約摘要
+      function updateBookingSummary() {
+        const packageCard = document.querySelector('.package-card.selected');
+        const packageName = packageCard ? packageCard.querySelector('.package-name').textContent : '';
+        const departureDate = document.getElementById('departure-date').value;
+        const returnDate = document.getElementById('return-date').value;
+        const adults = document.getElementById('adults').value;
+        const children = document.getElementById('children').value;
+        const fullName = document.getElementById('full-name').value;
+        const email = document.getElementById('email').value;
+        
+        const selectedServices = [];
+        document.querySelectorAll('input[name="services"]:checked').forEach(service => {
+          const label = service.parentElement.textContent.trim();
+          selectedServices.push(label);
+        });
+        
+        const summaryHTML = `
+          <p><strong>套餐：</strong> ${packageName}</p>
+          <p><strong>出發日期：</strong> ${departureDate}</p>
+          <p><strong>回程日期：</strong> ${returnDate}</p>
+          <p><strong>旅客人數：</strong> 成人 ${adults} 位，兒童 ${children} 位</p>
+          <p><strong>聯絡人：</strong> ${fullName}</p>
+          <p><strong>電子信箱：</strong> ${email}</p>
+          ${selectedServices.length > 0 ? `<p><strong>額外服務：</strong> ${selectedServices.join(', ')}</p>` : ''}
+        `;
+        
+        document.getElementById('summary-content').innerHTML = summaryHTML;
+      }
+
+      // 表單提交
+      document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 處理中...';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+          alert('預約成功！我們將在24小時內與您聯絡確認行程細節。');
+          // 這裡可以重定向到確認頁面
+          // window.location.href = './booking-confirmation.html';
+          
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
+      });
+
+      // 額外服務變更時更新價格
+      document.querySelectorAll('input[name="services"]').forEach(service => {
+        service.addEventListener('change', updatePricing);
+      });
+
+      // 回到首頁按鈕顯示/隱藏
+      const homeBtn = document.getElementById('homeBtn');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 300) {
+          homeBtn.classList.add('show');
+        } else {
+          homeBtn.classList.remove('show');
+        }
+      });
+
+      // 設置最小日期為今天
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('departure-date').min = today;
+      document.getElementById('return-date').min = today;
+
+      // 當出發日期改變時，設置回程日期的最小值
+      document.getElementById('departure-date').addEventListener('change', function() {
+        document.getElementById('return-date').min = this.value;
+      });
+    </script>
+  </body>
+</html> 

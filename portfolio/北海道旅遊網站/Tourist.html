@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="zh-TW">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="北海道, 觀光景點, 旅遊, 自然風景, 札幌, 函館, 小樽">
+  <meta name="description" content="探索北海道最美的觀光景點，從札幌到函館，從自然風景到文化古蹟，發現北海道的無窮魅力。">
+  <title>北海道觀光景點 - 探索雪國美景</title>
+  <link rel="stylesheet" href="navbar.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="navbar.js" defer></script>
+  <style>
+    /* 北海道雪白風格頁面設計 */
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 50%, #e6f3ff 100%) !important;
+      min-height: 100vh;
+    }
+    .hero-section {
+      background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 50%, #f0f8ff 100%);
+      color: #2d5a87;
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 3rem;
+      border: 2px solid rgba(135, 206, 235, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 30% 70%, rgba(135, 206, 235, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 70% 30%, rgba(135, 206, 235, 0.08) 1px, transparent 1px);
+      background-size: 150px 150px, 100px 100px;
+      animation: snowfall 30s linear infinite;
+      pointer-events: none;
+    }
+    
+    .search-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(135, 206, 235, 0.2);
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(135, 206, 235, 0.2);
+    }
+    .attraction-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(135, 206, 235, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      border: 1px solid rgba(135, 206, 235, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .attraction-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(135, 206, 235, 0.3);
+      border: 1px solid rgba(135, 206, 235, 0.4);
+    }
+    .attraction-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      filter: brightness(1.1) saturate(1.1);
+    }
+    .attraction-card .card-body {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(5px);
+    }
+    .category-badge {
+      background: linear-gradient(135deg, #87ceeb, #4facfe);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(135, 206, 235, 0.3);
+    }
+    .region-tag {
+      background: linear-gradient(135deg, #e3f2fd, #87ceeb);
+      color: #2d5a87;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      float: right;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(135, 206, 235, 0.2);
+    }
+    .filter-btn {
+      border: 2px solid #87ceeb;
+      color: #2d5a87;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      margin: 0.25rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 8px rgba(135, 206, 235, 0.1);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: linear-gradient(135deg, #87ceeb, #4facfe);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+    }
+    /* 雪人Logo樣式 */
+    .navbar-snowman {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 50px !important;
+      width: 50px !important;
+      position: absolute !important;
+      right: -80px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+    }
+
+    .snowman {
+      position: relative;
+      width: 35px;
+      height: 45px;
+      animation: snowmanBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes snowmanBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-2px) rotate(1deg); }
+      50% { transform: translateY(0) rotate(0deg); }
+      75% { transform: translateY(-1px) rotate(-1deg); }
+    }
+
+    .snowman-head {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-eye {
+      position: absolute;
+      top: 4px;
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .left-eye { left: 4px; }
+    .right-eye { right: 4px; }
+
+    .snowman-nose {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      border-top: 4px solid #ff7f50;
+    }
+
+    .snowman-mouth {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 2px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #2d4a87;
+      border-top: none;
+    }
+
+    .snowman-body {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .snowman-button:first-child { top: 6px; }
+    .snowman-button:last-child { top: 12px; }
+
+    .snowman-hat {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 8px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .snowman-hat::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: 3px;
+      width: 4px;
+      height: 8px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .navbar-snowman:hover .snowman {
+      animation: snowmanExcited 0.6s ease-in-out;
+    }
+
+    @keyframes snowmanExcited {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(5deg); }
+      50% { transform: scale(1.05) rotate(0deg); }
+      75% { transform: scale(1.1) rotate(-5deg); }
+    }
+
+    /* 覆蓋外部navbar.css - 使用高特異性選擇器 */
+    nav.navbar .navbar-container {
+      position: relative;
+    }
+
+    /* 雪人樣式 - 與index.html保持一致 */
+    .navbar-snowman {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+    }
+
+    .snowman {
+      position: relative;
+      width: 35px;
+      height: 45px;
+      animation: snowmanBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes snowmanBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-2px) rotate(1deg); }
+      50% { transform: translateY(0) rotate(0deg); }
+      75% { transform: translateY(-1px) rotate(-1deg); }
+    }
+
+    /* 雪人內部結構樣式 */
+    .snowman-head {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-eye {
+      position: absolute;
+      top: 4px;
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .left-eye { left: 4px; }
+    .right-eye { right: 4px; }
+
+    .snowman-nose {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      border-top: 4px solid #ff7f50;
+    }
+
+    .snowman-mouth {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 2px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #2d4a87;
+      border-top: none;
+    }
+
+    .snowman-body {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .snowman-button:first-child {
+      top: 6px;
+    }
+
+    .snowman-button:last-child {
+      top: 12px;
+    }
+
+    .snowman-hat {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 8px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .snowman-hat::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: 3px;
+      width: 4px;
+      height: 8px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .navbar-snowman:hover .snowman {
+      animation: snowmanExcited 0.6s ease-in-out;
+    }
+
+    @keyframes snowmanExcited {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(5deg); }
+      50% { transform: scale(1.05) rotate(0deg); }
+      75% { transform: scale(1.1) rotate(-5deg); }
+    }
+
+    /* 平板版設置 - 讓navbar.css自然控制布局 */
+    @media (max-width: 992px) {
+      /* 移除強制定位，讓外部navbar.css控制漢堡選單的顯示 */
+    }
+
+    /* 大手機版設置 */
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 2rem; }
+      .attraction-card img { height: 200px; }
+
+      /* 讓雪人和漢堡選單保持自然位置，遵循navbar.css的flexbox布局 */
+      nav.navbar .navbar-container .navbar-snowman {
+        width: 40px;
+        height: 40px;
+        /* 移除absolute positioning，讓它保持在flexbox中的自然位置 */
+      }
+
+      /* 大手機版雪人內部元素調整 */
+      .snowman {
+        width: 28px;
+        height: 36px;
+      }
+
+      .snowman-head {
+        width: 14px;
+        height: 14px;
+      }
+
+      .snowman-body {
+        width: 18px;
+        height: 16px;
+        top: 13px;
+      }
+
+      .snowman-base {
+        width: 22px;
+        height: 14px;
+      }
+    }
+
+    /* 北海道雪白主題頁腳 */
+    .modern-footer {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 30%, #e3f2fd 70%, #ffffff 100%);
+      color: #2d4a87;
+      padding: 80px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 -10px 40px rgba(102, 126, 234, 0.1);
+    }
+
+    .modern-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(circle at 80% 40%, rgba(227, 242, 253, 0.6) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.9) 3px, transparent 3px),
+        radial-gradient(circle at 90% 80%, rgba(227, 242, 253, 0.5) 2px, transparent 2px);
+      background-size: 150px 150px, 80px 80px, 200px 200px, 120px 120px;
+      animation: snowfallPattern 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .modern-footer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #a8e6cf 25%, #ffffff 50%, #a8e6cf 75%, #667eea 100%);
+      background-size: 300% 100%;
+      animation: snowShimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes snowfallPattern {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-50px) translateX(10px); }
+    }
+
+    @keyframes snowShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .footer-decorations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .footer-decoration {
+      position: absolute;
+      font-size: 2rem;
+      animation: snowDance 30s ease-in-out infinite;
+      color: rgba(102, 126, 234, 0.3);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-decoration:nth-child(1) { 
+      top: 15%; 
+      left: 8%; 
+      animation-delay: 0s; 
+      font-size: 2.5rem;
+    }
+    .footer-decoration:nth-child(2) { 
+      top: 25%; 
+      right: 12%; 
+      animation-delay: 10s; 
+      font-size: 1.8rem;
+    }
+    .footer-decoration:nth-child(3) { 
+      bottom: 35%; 
+      left: 15%; 
+      animation-delay: 20s; 
+      font-size: 2.2rem;
+    }
+    .footer-decoration:nth-child(4) { 
+      bottom: 45%; 
+      right: 20%; 
+      animation-delay: 15s; 
+      font-size: 2rem;
+    }
+
+    @keyframes snowDance {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+        opacity: 0.3; 
+      }
+      25% { 
+        transform: translateY(-20px) rotate(10deg) scale(1.1); 
+        opacity: 0.5; 
+      }
+      50% { 
+        transform: translateY(-15px) rotate(-8deg) scale(0.9); 
+        opacity: 0.4; 
+      }
+      75% { 
+        transform: translateY(-25px) rotate(6deg) scale(1.05); 
+        opacity: 0.6; 
+      }
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #2d4a87 0%, #667eea 30%, #2d4a87 60%, #667eea 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: frostBrandGlow 5s ease-in-out infinite;
+      text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+      position: relative;
+    }
+
+    .footer-brand::before {
+      content: '❄️';
+      position: absolute;
+      left: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      animation: snowflakeRotate 8s linear infinite;
+    }
+
+    .footer-brand::after {
+      content: '❄️';
+      position: absolute;
+      right: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      animation: snowflakeRotate 8s linear infinite reverse;
+    }
+
+    @supports not (-webkit-background-clip: text) {
+      .footer-brand {
+        background: none;
+        -webkit-text-fill-color: initial;
+        color: #2d4a87;
+      }
+    }
+
+    @keyframes frostBrandGlow {
+      0%, 100% { 
+        background-position: 0% 50%; 
+        transform: scale(1);
+      }
+      33% { 
+        background-position: 50% 100%; 
+        transform: scale(1.02);
+      }
+      66% { 
+        background-position: 100% 0%; 
+        transform: scale(0.98);
+      }
+    }
+
+    @keyframes snowflakeRotate {
+      0% { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    .footer-tagline {
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      opacity: 0.8;
+      font-style: italic;
+      color: #5a7ba8;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-link {
+      color: #2d4a87;
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      transition: all 0.4s ease;
+      padding: 12px 18px;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(167, 230, 207, 0.6), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .footer-link:hover {
+      opacity: 1;
+      color: #1a365d;
+      border-color: rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-link:hover::before {
+      left: 100%;
+    }
+
+    .footer-contact {
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      box-shadow: 
+        0 10px 40px rgba(102, 126, 234, 0.1),
+        inset 0 2px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-contact h3 {
+      color: #2d4a87;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-contact p {
+      opacity: 0.9;
+      line-height: 1.6;
+      color: #5a7ba8;
+    }
+
+    .footer-copyright {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      color: #5a7ba8;
+      border-top: 2px solid rgba(102, 126, 234, 0.2);
+      padding-top: 2rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .footer-copyright::before {
+      content: '❄️';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+      padding: 0 15px;
+      font-size: 1rem;
+      border-radius: 50%;
+      color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+      .footer-brand {
+        font-size: 2rem;
+        letter-spacing: 3px;
+      }
+
+      .footer-tagline {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .footer-link {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+      }
+
+      .footer-contact {
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .footer-contact h3 {
+        font-size: 1.1rem;
+      }
+
+      .footer-contact p {
+        font-size: 0.9rem;
+      }
+
+      .footer-decoration {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* 小手機版設置 */
+    @media (max-width: 480px) {
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .footer-contact {
+        padding: 1rem;
+      }
+
+      /* 小手機版雪人尺寸調整，保持自然位置 */
+      nav.navbar .navbar-container .navbar-snowman {
+        width: 35px;
+        height: 35px;
+        /* 保持flexbox中的自然位置，不強制定位 */
+      }
+
+      /* 小手機版雪人內部元素調整 */
+      .snowman {
+        width: 25px;
+        height: 32px;
+      }
+
+      .snowman-head {
+        width: 12px;
+        height: 12px;
+      }
+
+      .snowman-body {
+        width: 16px;
+        height: 14px;
+        top: 11px;
+      }
+
+      .snowman-base {
+        width: 20px;
+        height: 12px;
+      }
+
+      .snowman-hat {
+        width: 8px;
+        height: 6px;
+        top: -6px;
+      }
+
+      .snowman-scarf {
+        width: 14px;
+        height: 3px;
+        top: 12px;
+      }
+    }
+
+    /* 導航欄Logo樣式 - 北海道雪國主題 */
+    .navbar-logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, #ffffff 0%, #e3f2fd 50%, #ffffff 100%);
+      border: 2px solid transparent;
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(102, 126, 234, 0.2),
+        inset 0 2px 8px rgba(255, 255, 255, 0.4);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: logoBreath 3s ease-in-out infinite;
+    }
+
+    @keyframes logoBreath {
+      0%, 100% {
+        box-shadow: 
+          0 0 20px rgba(255, 255, 255, 0.3),
+          0 0 40px rgba(102, 126, 234, 0.2),
+          inset 0 2px 8px rgba(255, 255, 255, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 
+          0 0 30px rgba(255, 255, 255, 0.5),
+          0 0 60px rgba(102, 126, 234, 0.4),
+          inset 0 3px 12px rgba(255, 255, 255, 0.6);
+        transform: scale(1.03);
+      }
+    }
+
+    .navbar-logo:hover img {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 0 80px rgba(102, 126, 234, 0.5),
+        0 10px 30px rgba(45, 74, 135, 0.3),
+        inset 0 4px 15px rgba(255, 255, 255, 0.7);
+      background: linear-gradient(45deg, #ffffff 0%, #bbdefb 50%, #ffffff 100%);
+      animation: logoSparkle 0.6s ease-out;
+    }
+
+    @keyframes logoSparkle {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); }
+      100% { filter: brightness(1); }
+    }
+
+    /* 為logo添加雪花裝飾 */
+    nav.navbar .navbar-container .navbar-logo {
+      position: relative;
+      display: flex;
+      align-items: center;
+      transform: translateX(-90px); /* 向左移動90px */
+    }
+
+    .navbar-logo::before {
+      content: '❄';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: snowflakeRotate 4s linear infinite;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-logo:hover::before {
+      color: rgba(102, 126, 234, 0.8);
+      font-size: 16px;
+      animation-duration: 1s;
+    }
+
+    @keyframes snowflakeRotate {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 全新導覽列 -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- 左側大logo（可點擊跳轉首頁） -->
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="./images/北海道首頁logo.png" alt="HOKKAIDO LOVE">
+        </a>
+      </div>
+      
+      <!-- 桌面版選單 -->
+      <ul class="navbar-nav">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="Tourist.html">觀光景點</a></li>
+        <li><a href="About.html">溫泉</a></li>
+        <li><a href="Contact.html">祭典活動</a></li>
+        <li><a href="new.html">推薦行程</a></li>
+        <li><a href="Region.html">區域指南</a></li>
+        <li><a href="Food.html">美食</a></li>
+        <li><a href="Booking.html">預約</a></li>
+        <li><a href="Transport.html">交通指南</a></li>
+      </ul>
+      
+      <!-- 右側雪人logo -->
+      <div class="navbar-snowman">
+        <div class="snowman">
+          <div class="snowman-head">
+            <div class="snowman-eye left-eye"></div>
+            <div class="snowman-eye right-eye"></div>
+            <div class="snowman-nose"></div>
+            <div class="snowman-mouth"></div>
+          </div>
+          <div class="snowman-body">
+            <div class="snowman-button"></div>
+            <div class="snowman-button"></div>
+          </div>
+          <div class="snowman-base"></div>
+          <div class="snowman-hat"></div>
+          <div class="snowman-scarf"></div>
+        </div>
+      </div>
+      
+      <!-- 移動版漢堡選單按鈕 -->
+      <button class="navbar-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- 英雄區域 -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;">北海道觀光景點</h1>
+      <p style="font-size: 1.2rem; opacity: 0.9;">探索雪國的壯麗自然美景與獨特文化魅力</p>
+      <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, #87ceeb, #4facfe); color: white; padding: 0.8rem 2rem; border-radius: 2rem; text-decoration: none; margin-top: 1rem; box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3); transition: all 0.3s ease; position: relative; z-index: 1;">
+        🏠 回到首頁
+      </a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- 搜尋與篩選區域 -->
+    <section class="search-section">
+      <h3 style="text-align: center; color: #2d5a87; margin-bottom: 2rem;">尋找您想要的景點</h3>
+      
+      <!-- 快速篩選按鈕 -->
+      <div class="text-center mb-4">
+        <button class="filter-btn active" data-filter="all">全部景點</button>
+        <button class="filter-btn" data-filter="natural">自然風景</button>
+        <button class="filter-btn" data-filter="cultural">文化古蹟</button>
+        <button class="filter-btn" data-filter="activity">戶外活動</button>
+        <button class="filter-btn" data-filter="city">城市景觀</button>
+      </div>
+
+      <!-- 區域篩選 -->
+      <div class="text-center mb-4">
+        <button class="filter-btn" data-region="all">全部區域</button>
+        <button class="filter-btn" data-region="central">道央地區</button>
+        <button class="filter-btn" data-region="south">道南地區</button>
+        <button class="filter-btn" data-region="north">道北地區</button>
+        <button class="filter-btn" data-region="east">道東地區</button>
+      </div>
+
+      <!-- 搜尋框 -->
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="輸入景點名稱或關鍵字..." id="searchInput">
+            <button class="btn btn-primary" type="button" onclick="searchAttractions()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.242.656a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 景點展示區域 -->
+    <section class="attractions-section">
+      <div class="row" id="attractionsContainer">
+        
+        <!-- 天狗山纜車 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="activity natural" data-region="central">
+          <div class="attraction-card">
+            <img src="images/天狗山纜車夜景.png" alt="天狗山纜車夜景">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">戶外活動</span>
+              <h5 class="card-title mt-2">天狗山纜車</h5>
+              <p class="text-muted mb-2">📍 小樽、新雪谷近郊</p>
+              <p class="card-text">從市中心開車15分鐘即可抵達的天狗山，是小樽市民熟悉的象徵性山岳。搭乘纜車約四分鐘即可抵達海拔532.4公尺的山頂，享受壯麗的港灣景色。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.5/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 藻岩山 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural city" data-region="central">
+          <div class="attraction-card">
+            <img src="images/01.png" alt="藻岩山">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">自然風景</span>
+              <h5 class="card-title mt-2">藻岩山展望台</h5>
+              <p class="text-muted mb-2">📍 札幌、定山溪地區</p>
+              <p class="card-text">從札幌市中心搭乘電車約20分鐘即可抵達海拔531公尺的藻岩山，在愛努語中被稱為「經常上山觀望的地方」，是札幌市民最熟悉的山。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.7/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 森林精靈露台 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="cultural activity" data-region="central">
+          <div class="attraction-card">
+            <img src="images/02.png" alt="森林精靈露台">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">文化古蹟</span>
+              <h5 class="card-title mt-2">森林精靈露台</h5>
+              <p class="text-muted mb-2">📍 富良野、美瑛近郊</p>
+              <p class="card-text">具有童話般風景的小型工藝村，位於新富良野王子大飯店內。約15間小木屋販售著不同的富良野在地工藝品，沿著森林步道探索獨特作品。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.3/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 登別地獄谷 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural" data-region="central">
+          <div class="attraction-card">
+            <img src="images/03.png" alt="登別地獄谷">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">自然風景</span>
+              <h5 class="card-title mt-2">登別地獄谷</h5>
+              <p class="text-muted mb-2">📍 洞爺、登別、日高近郊</p>
+              <p class="card-text">呈現出彷彿地獄的情景，從岩縫中噴出火山氣體，硫磺氣味、繚繞的白煙及沸騰的溫泉，令人震撼不已。設有步道可遊覽地獄谷一帶。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.4/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 札幌時計台 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="cultural city" data-region="central">
+          <div class="attraction-card">
+            <img src="images/札幌時計台.png" alt="札幌時計台">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">文化古蹟</span>
+              <h5 class="card-title mt-2">札幌時計台</h5>
+              <p class="text-muted mb-2">📍 札幌市中心</p>
+              <p class="card-text">札幌的象徵性建築，建於1878年，是日本現存最古老的時計台。白色木造建築散發著歷史韻味，是札幌市區必訪的文化地標。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.1/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 函館山夜景 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural city" data-region="south">
+          <div class="attraction-card">
+            <img src="images/2025-04-1623_42_32-_HOKKAIDOLOVE-.png" alt="函館山夜景">
+            <div class="card-body">
+              <span class="region-tag">道南地區</span>
+              <span class="category-badge">城市景觀</span>
+              <h5 class="card-title mt-2">函館山夜景</h5>
+              <p class="text-muted mb-2">📍 函館市</p>
+              <p class="card-text">被譽為世界三大夜景之一的函館山夜景，從山頂俯瞰函館市區的燈火通明，形成獨特的扇形夜景，是絕不能錯過的浪漫景點。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.8/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 薰衣草田 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural" data-region="central">
+          <div class="attraction-card">
+            <img src="images/2025-04-1623_30_31-HOKKAIDOLOVE-.png" alt="富良野薰衣草田">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">自然風景</span>
+              <h5 class="card-title mt-2">富良野薰衣草田</h5>
+              <p class="text-muted mb-2">📍 富良野市</p>
+              <p class="card-text">夏季時期，紫色薰衣草花海一望無際，搭配遠山背景形成絕美景色。最佳觀賞期為7月中旬到8月上旬，是北海道夏季的代表性景觀。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.6/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 知床半島 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural" data-region="east">
+          <div class="attraction-card">
+            <img src="images/知床國立公園.png" alt="知床半島">
+            <div class="card-body">
+              <span class="region-tag">道東地區</span>
+              <span class="category-badge">自然風景</span>
+              <h5 class="card-title mt-2">知床半島</h5>
+              <p class="text-muted mb-2">📍 知床國立公園</p>
+              <p class="card-text">世界自然遺產，保持原始自然生態的半島。可觀察到棕熊、鹿等野生動物，冬季還能體驗流冰奇景，是自然愛好者的天堂。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.9/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 美瑛拼布之路 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-category="natural activity" data-region="central">
+          <div class="attraction-card">
+            <img src="images/2025-04-1623_30_53-HOKKAIDOLOVE-.png" alt="美瑛拼布之路">
+            <div class="card-body">
+              <span class="region-tag">道央地區</span>
+              <span class="category-badge">自然風景</span>
+              <h5 class="card-title mt-2">美瑛拼布之路</h5>
+              <p class="text-muted mb-2">📍 美瑛町</p>
+              <p class="card-text">如拼布般的丘陵農田景觀，不同作物形成的色彩拼貼，創造出夢幻般的田園風光。最佳觀賞期為夏秋季節，適合騎行或開車遊覽。</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">⭐ 4.5/5</small>
+                <a href="#" class="btn btn-outline-primary btn-sm">了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 載入更多按鈕 -->
+      <div class="text-center mt-4 mb-5">
+        <button class="btn btn-outline-primary btn-lg" onclick="loadMoreAttractions()">
+          載入更多景點 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- 北海道主題頁腳 -->
+  <footer class="modern-footer">
+    <div class="footer-decorations">
+      <div class="footer-decoration">🏔️</div>
+      <div class="footer-decoration">❄️</div>
+      <div class="footer-decoration">♨️</div>
+      <div class="footer-decoration">🦀</div>
+    </div>
+    <div class="footer-content">
+      <div class="footer-brand">HOKKAIDO LOVE</div>
+      <div class="footer-tagline">您的北海道旅遊專家，帶您體驗最美的雪國風情</div>
+      
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">🏠 首頁</a>
+        <a href="About.html" class="footer-link">♨️ 溫泉體驗</a>
+        <a href="Food.html" class="footer-link">🍱 美食文化</a>
+        <a href="Contact.html" class="footer-link">🎋 祭典活動</a>
+        <a href="new.html" class="footer-link">🗺️ 推薦行程</a>
+        <a href="Booking.html" class="footer-link">📅 預約服務</a>
+      </div>
+
+      <div class="footer-contact">
+        <h3>聯絡我們</h3>
+        <p>📧 info@hokkaidolove.com<br>
+        📞 +81-11-2345-6789<br>
+        🏢 札幌市中央區北3条西6丁目</p>
+      </div>
+      
+      <div class="footer-copyright">
+        © 2025 HOKKAIDO LOVE - 北海道旅遊專家 | 全端網頁課程練習使用
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // 篩選功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const attractions = document.querySelectorAll('#attractionsContainer > div');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // 移除其他按鈕的 active 類別
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          const filter = this.getAttribute('data-filter') || this.getAttribute('data-region');
+          const type = this.hasAttribute('data-filter') ? 'category' : 'region';
+
+          attractions.forEach(attraction => {
+            if (filter === 'all') {
+              attraction.style.display = 'block';
+            } else {
+              const categories = attraction.getAttribute('data-category') || '';
+              const region = attraction.getAttribute('data-region') || '';
+              
+              if (type === 'category' && categories.includes(filter)) {
+                attraction.style.display = 'block';
+              } else if (type === 'region' && region === filter) {
+                attraction.style.display = 'block';
+              } else if (type === 'category') {
+                attraction.style.display = 'none';
+              }
+            }
+          });
+        });
+      });
+    });
+
+    // 搜尋功能
+    function searchAttractions() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const attractions = document.querySelectorAll('#attractionsContainer > div');
+
+      attractions.forEach(attraction => {
+        const title = attraction.querySelector('.card-title').textContent.toLowerCase();
+        const text = attraction.querySelector('.card-text').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || text.includes(searchTerm) || searchTerm === '') {
+          attraction.style.display = 'block';
+        } else {
+          attraction.style.display = 'none';
+        }
+      });
+    }
+
+    // 載入更多功能（模擬）
+    function loadMoreAttractions() {
+      alert('更多景點功能正在開發中，敬請期待！\n\n您也可以：\n• 查看推薦行程\n• 瀏覽溫泉指南\n• 探索美食文化');
+    }
+
+    // Enter 鍵搜尋
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchAttractions();
+      }
+    });
+  </script>
+
+</body>
+</html>

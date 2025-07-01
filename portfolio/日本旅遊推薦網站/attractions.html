@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>景點推薦 - 日本旅遊推薦</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      .attractions-container {
+        background: white;
+        padding: 2rem 0;
+      }
+      
+      .attractions-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, rgba(173, 216, 230, 0.3), rgba(135, 206, 235, 0.2), rgba(240,248,255,0.9));
+      }
+      
+      .attractions-title {
+        color: #4a90e2;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .attractions-subtitle {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .filter-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 0 2rem;
+      }
+      
+      .filter-tab {
+        background: white;
+        border: 2px solid #ecf0f1;
+        color: #7f8c8d;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .filter-tab:hover,
+      .filter-tab.active {
+        background: #e74c3c;
+        border-color: #e74c3c;
+        color: white;
+        text-decoration: none;
+      }
+      
+      .attractions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      
+      .attraction-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .attraction-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      }
+      
+      .attraction-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        position: relative;
+      }
+      
+      .attraction-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, #4a90e2, #357abd);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .attraction-content {
+        padding: 1.5rem;
+      }
+      
+      .attraction-name {
+        color: #2c3e50;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      
+      .attraction-location {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      
+      .attraction-location i {
+        margin-right: 0.5rem;
+      }
+      
+      .attraction-description {
+        color: #7f8c8d;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+      
+      .attraction-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .feature-tag {
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      .feature-tag:nth-child(1) {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        color: white;
+      }
+      
+      .feature-tag:nth-child(2) {
+        background: linear-gradient(135deg, #4ecdc4, #44bd87);
+        color: white;
+      }
+      
+      .feature-tag:nth-child(3) {
+        background: linear-gradient(135deg, #45b7d1, #2980b9);
+        color: white;
+      }
+      
+      .feature-tag:nth-child(4) {
+        background: linear-gradient(135deg, #f9ca24, #f0932b);
+        color: white;
+      }
+      
+      .feature-tag:nth-child(5) {
+        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        color: white;
+      }
+      
+      .feature-tag:nth-child(6) {
+        background: linear-gradient(135deg, #fd79a8, #e84393);
+        color: white;
+      }
+      
+      .attraction-rating {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      
+      .stars {
+        color: #f39c12;
+        margin-right: 0.5rem;
+      }
+      
+      .rating-text {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+      }
+      
+      .attraction-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #ecf0f1;
+        padding-top: 1rem;
+      }
+      
+      .best-time {
+        color: #7f8c8d;
+        font-size: 0.85rem;
+      }
+      
+      .attraction-link {
+        background: #e74c3c;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      .attraction-link:hover {
+        background: #c0392b;
+        color: white;
+        text-decoration: none;
+      }
+      
+      .region-section {
+        margin-bottom: 4rem;
+      }
+      
+      .region-title {
+        color: #2c3e50;
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+      
+      .region-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: #e74c3c;
+        border-radius: 2px;
+      }
+      
+      .home-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+      
+      .home-btn.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .home-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+      
+      .home-btn i {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 768px) {
+        .attractions-title {
+          font-size: 2rem;
+        }
+        
+        .attractions-grid {
+          grid-template-columns: 1fr;
+          padding: 0 1rem;
+        }
+        
+        .filter-tabs {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .home-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+        
+        .home-btn i {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img class="fixed-image" src="./images/富士山2.jpg" alt="fixed image" />
+
+    <header>
+      <section class="logo">
+        <a href="./index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+          <div class="logo-icon">
+            <i class="fa-solid fa-torii-gate"></i>
+          </div>
+          <h1>2025日本旅遊景點推薦</h1>
+        </a>
+      </section>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="./attractions.html" class="active"><i class="fa-solid fa-map-location-dot"></i> 景點推薦</a>
+          </li>
+          <li>
+            <a href="./login.html"><i class="fa-solid fa-user-circle"></i> 會員登入</a>
+          </li>
+          <li>
+            <a href="./booking.html"><i class="fa-solid fa-calendar-check"></i> 預約行程</a>
+          </li>
+          <li>
+            <a href="./contact.html"><i class="fa-solid fa-headset"></i> 聯絡我們</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="attractions-container">
+      <div class="attractions-header">
+        <h1 class="attractions-title">日本熱門景點推薦</h1>
+        <p class="attractions-subtitle">
+          探索日本四季之美，從繁華都市到寧靜鄉村，從古老寺廟到現代建築，體驗最authentic的日本文化
+        </p>
+      </div>
+
+      <div class="filter-tabs">
+        <a href="#all" class="filter-tab active" onclick="filterAttractions('all')">
+          <i class="fa-solid fa-globe"></i> 全部景點
+        </a>
+        <a href="#kanto" class="filter-tab" onclick="filterAttractions('kanto')">
+          <i class="fa-solid fa-city"></i> 關東地區
+        </a>
+        <a href="#kansai" class="filter-tab" onclick="filterAttractions('kansai')">
+          <i class="fa-solid fa-torii-gate"></i> 關西地區
+        </a>
+        <a href="#hokkaido" class="filter-tab" onclick="filterAttractions('hokkaido')">
+          <i class="fa-solid fa-snowflake"></i> 北海道
+        </a>
+        <a href="#kyushu" class="filter-tab" onclick="filterAttractions('kyushu')">
+          <i class="fa-solid fa-mountain"></i> 九州地區
+        </a>
+      </div>
+
+      <!-- 關東地區 -->
+      <div class="region-section" data-region="kanto">
+        <h2 class="region-title">關東地區</h2>
+        <div class="attractions-grid">
+          <div class="attraction-card" data-region="kanto">
+            <div style="position: relative;">
+              <img src="./images/富士山.jpg" alt="富士山" class="attraction-image">
+              <div class="attraction-badge">必訪景點</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">富士山</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                靜岡縣・山梨縣
+              </div>
+              <p class="attraction-description">
+                日本最高峰，海拔3776公尺的聖山。春天可賞櫻，夏天適合登山，秋天楓葉繽紛，冬天雪景如畫。五合目是最受歡迎的觀景點。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">登山</span>
+                <span class="feature-tag">攝影</span>
+                <span class="feature-tag">溫泉</span>
+                <span class="feature-tag">世界遺產</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span class="rating-text">4.8/5 (12,456 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：4-5月, 10-11月
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="attraction-card" data-region="kanto">
+            <div style="position: relative;">
+              <img src="./images/日本櫻花.jpg" alt="上野公園" class="attraction-image">
+              <div class="attraction-badge">賞櫻名所</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">上野公園</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                東京都台東區
+              </div>
+              <p class="attraction-description">
+                東京最受歡迎的賞櫻勝地，擁有超過1000棵櫻花樹。園內還有上野動物園、國立博物館等多個文化設施，是親子旅遊的最佳選擇。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">賞櫻</span>
+                <span class="feature-tag">博物館</span>
+                <span class="feature-tag">動物園</span>
+                <span class="feature-tag">親子</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="rating-text">4.6/5 (8,932 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：3-4月
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 關西地區 -->
+      <div class="region-section" data-region="kansai">
+        <h2 class="region-title">關西地區</h2>
+        <div class="attractions-grid">
+          <div class="attraction-card" data-region="kansai">
+            <div style="position: relative;">
+              <img src="./images/清水寺.jpg" alt="清水寺" class="attraction-image">
+              <div class="attraction-badge">世界遺產</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">清水寺</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                京都府京都市
+              </div>
+              <p class="attraction-description">
+                京都最著名的木造寺廟，以其懸空的清水舞台而聞名。春櫻秋楓時節景色格外迷人，是體驗日本傳統文化的最佳地點。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">歷史</span>
+                <span class="feature-tag">建築</span>
+                <span class="feature-tag">賞楓</span>
+                <span class="feature-tag">祈福</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span class="rating-text">4.7/5 (15,678 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：3-5月, 10-12月
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="attraction-card" data-region="kansai">
+            <div style="position: relative;">
+              <img src="./images/大阪街頭.jpg" alt="大阪城" class="attraction-image">
+              <div class="attraction-badge">熱門景點</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">大阪城</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                大阪府大阪市
+              </div>
+              <p class="attraction-description">
+                日本三大名城之一，豐臣秀吉所建造的雄偉城堡。天守閣內展示豐富的歷史文物，城周圍的大阪城公園是賞櫻的絕佳去處。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">城堡</span>
+                <span class="feature-tag">歷史</span>
+                <span class="feature-tag">賞櫻</span>
+                <span class="feature-tag">夜景</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="rating-text">4.5/5 (11,234 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：3-5月, 9-11月
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 北海道 -->
+      <div class="region-section" data-region="hokkaido">
+        <h2 class="region-title">北海道</h2>
+        <div class="attractions-grid">
+          <div class="attraction-card" data-region="hokkaido">
+            <div style="position: relative;">
+              <img src="./images/北海道雪景.jpg" alt="札幌雪祭" class="attraction-image">
+              <div class="attraction-badge">季節限定</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">札幌雪祭</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                北海道札幌市
+              </div>
+              <p class="attraction-description">
+                世界三大雪祭之一，每年2月舉辦。大通公園、薄野、真駒內會場展示精美雪雕冰雕，夜晚燈光照射下更加夢幻迷人。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">雪祭</span>
+                <span class="feature-tag">冬季</span>
+                <span class="feature-tag">燈光秀</span>
+                <span class="feature-tag">美食</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span class="rating-text">4.9/5 (9,876 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：2月
+                </div>
+                <a href="../../hokkaido-travel/index.html" class="attraction-link" target="_blank">查看詳情</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="attraction-card" data-region="hokkaido">
+            <div style="position: relative;">
+              <img src="./images/日本壽司.jpg" alt="函館朝市" class="attraction-image">
+              <div class="attraction-badge">美食天堂</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">函館朝市</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                北海道函館市
+              </div>
+              <p class="attraction-description">
+                北海道最大的海鮮市場，新鮮的螃蟹、海膽、鮭魚卵等海產豐富。必試的勝手丼讓你自由搭配喜愛的海鮮，體驗最純正的北海道味道。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">海鮮</span>
+                <span class="feature-tag">美食</span>
+                <span class="feature-tag">市場</span>
+                <span class="feature-tag">早餐</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="rating-text">4.6/5 (7,543 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：全年
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 九州地區 -->
+      <div class="region-section" data-region="kyushu">
+        <h2 class="region-title">九州地區</h2>
+        <div class="attractions-grid">
+          <div class="attraction-card" data-region="kyushu">
+            <div style="position: relative;">
+              <img src="./images/日本櫻花.jpg" alt="熊本城" class="attraction-image">
+              <div class="attraction-badge">重建中</div>
+            </div>
+            <div class="attraction-content">
+              <h3 class="attraction-name">熊本城</h3>
+              <div class="attraction-location">
+                <i class="fa-solid fa-location-dot"></i>
+                熊本縣熊本市
+              </div>
+              <p class="attraction-description">
+                日本三大名城之一，以其堅固的石垣和優美的天守閣而聞名。雖然在2016年地震中受損，但重建工程讓遊客能見證城堡的復甦過程。
+              </p>
+              <div class="attraction-features">
+                <span class="feature-tag">城堡</span>
+                <span class="feature-tag">歷史</span>
+                <span class="feature-tag">重建</span>
+                <span class="feature-tag">櫻花</span>
+              </div>
+              <div class="attraction-rating">
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+                <span class="rating-text">4.2/5 (5,432 評論)</span>
+              </div>
+              <div class="attraction-info">
+                <div class="best-time">
+                  <i class="fa-solid fa-calendar"></i> 最佳季節：3-5月, 9-11月
+                </div>
+                <a href="#" class="attraction-link">查看詳情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 回到首頁浮動按鈕 -->
+    <a href="./index.html" class="home-btn" id="homeBtn" title="回到首頁">
+      <i class="fa-solid fa-home"></i>
+    </a>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-section">
+            <div class="footer-logo-icon">
+              <i class="fa-solid fa-torii-gate"></i>
+            </div>
+            <h3>2025日本旅遊推薦</h3>
+          </div>
+          <p class="footer-description">
+            專業的日本旅遊規劃服務，為您量身打造最完美的日本之旅。從北海道的雪國風情到九州的溫泉文化，我們帶您深度體驗日本的四季之美。
+          </p>
+          <div class="social-links">
+            <a href="#" title="Facebook"><img src="./Icons/facebook.svg" alt="facebook" /></a>
+            <a href="#" title="Instagram"><img src="./Icons/instagram.svg" alt="instagram" /></a>
+            <a href="#" title="Twitter"><img src="./Icons/twitter.svg" alt="twitter" /></a>
+            <a href="#" title="YouTube"><img src="./Icons/youtube.svg" alt="youtube" /></a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4>快速導覽</h4>
+          <ul>
+            <li><a href="./attractions.html"><i class="fa-solid fa-plane"></i>景點推薦</a></li>
+            <li><a href="./booking.html"><i class="fa-solid fa-book"></i>預約行程</a></li>
+            <li><a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i>會員登入</a></li>
+            <li><a href="./contact.html"><i class="fa-regular fa-address-book"></i>聯絡我們</a></li>
+            <li><a href="../北海道旅遊網站/index.html" target="_blank"><i class="fa-solid fa-snowflake"></i>北海道專區</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>彭雲錕</a></li>
+            <li><a href="#"><i class="fa-solid fa-location-dot"></i>新竹縣</a></li>
+            <li><a href="mailto:teddy135790196@gmail.com"><i class="fa-solid fa-envelope"></i>teddy135790196@gmail.com</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i>週一至週五 09:00-18:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2025 日本旅遊推薦. All rights reserved.</p>
+        <p class="credits">由 彭雲錕 規劃設計 | 專業日本旅遊服務</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script>
+      // 景點篩選功能
+      function filterAttractions(region) {
+        const cards = document.querySelectorAll('.attraction-card');
+        const sections = document.querySelectorAll('.region-section');
+        const tabs = document.querySelectorAll('.filter-tab');
+        
+        // 移除所有active狀態
+        tabs.forEach(tab => tab.classList.remove('active'));
+        // 添加當前點擊的tab為active
+        event.target.classList.add('active');
+        
+        if (region === 'all') {
+          // 顯示所有景點
+          cards.forEach(card => card.style.display = 'block');
+          sections.forEach(section => section.style.display = 'block');
+        } else {
+          // 隱藏所有區域
+          sections.forEach(section => section.style.display = 'none');
+          // 只顯示選中的區域
+          const targetSection = document.querySelector(`[data-region="${region}"]`);
+          if (targetSection) {
+            targetSection.closest('.region-section').style.display = 'block';
+          }
+        }
+      }
+      
+      // 景點卡片點擊效果
+      document.querySelectorAll('.attraction-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.classList.contains('attraction-link')) {
+            const link = this.querySelector('.attraction-link');
+            if (link) {
+              link.click();
+            }
+          }
+        });
+      });
+      
+      // 平滑滾動到頁面頂部
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      
+      // 回到首頁按鈕顯示/隱藏
+      const homeBtn = document.getElementById('homeBtn');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 300) {
+          homeBtn.classList.add('show');
+        } else {
+          homeBtn.classList.remove('show');
+        }
+      });
+    </script>
+  </body>
+</html> 

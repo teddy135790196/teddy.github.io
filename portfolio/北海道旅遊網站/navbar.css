@@ -1,0 +1,403 @@
+/* 北海道雪白風格導覽列 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 50%, #e3f2fd 100%) !important;
+    box-shadow: 0 4px 20px rgba(135, 206, 235, 0.2) !important;
+    z-index: 1000 !important;
+    padding: 15px 0 !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 2px solid rgba(135, 206, 235, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 雪花背景動畫 */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(135, 206, 235, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(135, 206, 235, 0.12) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 90% 70%, rgba(135, 206, 235, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 10% 30%, rgba(135, 206, 235, 0.1) 2px, transparent 2px);
+    background-size: 200px 200px, 150px 150px, 180px 180px, 120px 120px, 250px 250px;
+    animation: snowfall 25s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes snowfall {
+    0% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-200px) translateX(100px); }
+}
+
+.navbar-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 30px !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.navbar-logo {
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+.navbar-logo::before {
+    content: '❄️';
+    position: absolute;
+    left: -25px;
+    font-size: 1.2rem;
+    animation: rotate 4s linear infinite;
+    color: #87ceeb;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.navbar-logo img {
+    height: 55px !important;
+    width: auto !important;
+    filter: drop-shadow(0 2px 8px rgba(135, 206, 235, 0.3)) !important;
+    transition: all 0.3s ease !important;
+}
+
+.navbar-logo img:hover {
+    transform: scale(1.05) !important;
+    filter: drop-shadow(0 4px 15px rgba(135, 206, 235, 0.5)) !important;
+}
+
+.navbar-logo-text {
+    font-size: 1.6rem !important;
+    font-weight: bold !important;
+    color: #2d5a87 !important;
+    margin-left: 15px !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 3px rgba(135, 206, 235, 0.3) !important;
+    letter-spacing: 1px !important;
+    position: relative !important;
+}
+
+.navbar-logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #87ceeb, #ffffff);
+    transition: width 0.3s ease;
+}
+
+.navbar-logo-text:hover::after {
+    width: 100%;
+}
+
+.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50px !important;
+    padding: 8px !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(135, 206, 235, 0.2) !important;
+    box-shadow: 0 2px 15px rgba(135, 206, 235, 0.1) !important;
+}
+
+.navbar-nav li {
+    margin: 0 3px !important;
+    position: relative !important;
+    display: inline-block !important;
+    float: none !important;
+}
+
+.navbar-nav li::before {
+    content: '❄️';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #87ceeb;
+}
+
+.navbar-nav li:hover::before {
+    opacity: 1;
+    top: -20px;
+}
+
+.navbar-nav a {
+    display: block !important;
+    padding: 12px 18px !important;
+    color: #2d5a87 !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    border-radius: 25px !important;
+    transition: all 0.4s ease !important;
+    font-size: 0.95rem !important;
+    text-shadow: 0 1px 2px rgba(135, 206, 235, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.navbar-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(135, 206, 235, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.navbar-nav a:hover::before {
+    left: 100%;
+}
+
+.navbar-nav a:hover {
+    background: rgba(135, 206, 235, 0.2) !important;
+    color: #1e3c72 !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.3) !important;
+    border: 2px solid rgba(135, 206, 235, 0.4) !important;
+}
+
+.navbar-nav a.active {
+    background: rgba(135, 206, 235, 0.3) !important;
+    color: #1e3c72 !important;
+    box-shadow: 0 4px 20px rgba(135, 206, 235, 0.4) !important;
+    border: 2px solid rgba(135, 206, 235, 0.5) !important;
+}
+
+/* 右側小logo樣式 - 北海道雪白風格 */
+.navbar-small-logo {
+    height: 45px !important;
+    width: auto !important;
+    margin-left: 20px !important;
+    filter: drop-shadow(0 2px 8px rgba(135, 206, 235, 0.3)) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+}
+
+.navbar-small-logo::before {
+    content: '🏔️';
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    animation: float 3s ease-in-out infinite;
+    color: #87ceeb;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(-60%); }
+}
+
+.navbar-small-logo:hover {
+    transform: scale(1.1) rotate(5deg) !important;
+    filter: drop-shadow(0 4px 20px rgba(135, 206, 235, 0.6)) !important;
+}
+
+/* 漢堡選單按鈕 - 北海道雪白風格 */
+.navbar-toggle {
+    display: none !important;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(135, 206, 235, 0.1)) !important;
+    border: 2px solid rgba(135, 206, 235, 0.3) !important;
+    border-radius: 12px !important;
+    font-size: 1.5rem !important;
+    color: #2d5a87 !important;
+    cursor: pointer !important;
+    padding: 10px 15px !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.navbar-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(135, 206, 235, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.navbar-toggle:hover::before {
+    transform: translateX(100%);
+}
+
+.navbar-toggle:hover {
+    background: rgba(135, 206, 235, 0.3) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 20px rgba(135, 206, 235, 0.4) !important;
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .navbar-nav {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 20px !important;
+        right: 20px !important;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+        flex-direction: column !important;
+        box-shadow: 0 8px 30px rgba(135, 206, 235, 0.3) !important;
+        padding: 25px 0 !important;
+        border-radius: 20px !important;
+        border: 2px solid rgba(135, 206, 235, 0.2) !important;
+        backdrop-filter: blur(15px) !important;
+    }
+    
+    .navbar-nav.active {
+        display: flex !important;
+        animation: slideDown 0.4s ease !important;
+    }
+    
+    @keyframes slideDown {
+        from { 
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .navbar-nav li {
+        margin: 5px 20px !important;
+        text-align: center !important;
+    }
+    
+    .navbar-nav li::before {
+        display: none !important;
+    }
+    
+    .navbar-nav a {
+        padding: 15px 25px !important;
+        border-radius: 15px !important;
+        font-size: 1.1rem !important;
+        margin: 0 !important;
+        border: 1px solid rgba(135, 206, 235, 0.1) !important;
+    }
+    
+    .navbar-toggle {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0 20px !important;
+    }
+    
+    .navbar-logo img {
+        height: 45px !important;
+    }
+    
+    .navbar-logo-text {
+        font-size: 1.3rem !important;
+        margin-left: 10px !important;
+    }
+    
+    .navbar-small-logo {
+        height: 35px !important;
+        margin-left: 15px !important;
+    }
+    
+    .navbar-nav a {
+        font-size: 1rem !important;
+        padding: 12px 20px !important;
+    }
+}
+
+/* 頁面內容上邊距 */
+body {
+    padding-top: 90px !important;
+    background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 50%, #e6f3ff 100%) !important;
+    min-height: 100vh !important;
+}
+
+/* 特殊北海道雪花元素動畫 */
+@keyframes hokkaido-glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(135, 206, 235, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 35px rgba(135, 206, 235, 0.7);
+    }
+}
+
+.navbar-logo:hover img {
+    animation: hokkaido-glow 2s ease-in-out infinite !important;
+}
+
+/* 滾動時導覽列變化 */
+.navbar.scrolled {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
+    padding: 8px 0 !important;
+    box-shadow: 0 6px 25px rgba(135, 206, 235, 0.3) !important;
+}
+
+/* 北海道雪白主題色彩變數 */
+:root {
+    --hokkaido-snow-white: #ffffff;
+    --hokkaido-ice-blue: #87ceeb;
+    --hokkaido-light-blue: #e3f2fd;
+    --hokkaido-powder-blue: #f0f8ff;
+    --hokkaido-deep-blue: #2d5a87;
+    --hokkaido-navy-blue: #1e3c72;
+}
+
+/* 雪花粒子效果 */
+.snowflake-particle {
+    position: fixed;
+    top: -10px;
+    font-size: 1rem;
+    color: rgba(135, 206, 235, 0.7);
+    pointer-events: none;
+    z-index: 999;
+    animation: snowfall-particle 8s linear infinite;
+}
+
+@keyframes snowfall-particle {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+} 

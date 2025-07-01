@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日本旅遊推薦</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <img class="fixed-image" src="./images/富士山2.jpg" alt="fixed image" />
+
+    <header>
+      <section class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-torii-gate"></i>
+        </div>
+        <h1>2025日本旅遊景點推薦</h1>
+      </section>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="./attractions.html"><i class="fa-solid fa-map-location-dot"></i> 景點推薦</a>
+          </li>
+          <li>
+            <a href="./login.html"><i class="fa-solid fa-user-circle"></i> 會員登入</a>
+          </li>
+          <li>
+            <a href="./booking.html"><i class="fa-solid fa-calendar-check"></i> 預約行程</a>
+          </li>
+          <li>
+            <a href="./contact.html"><i class="fa-solid fa-headset"></i> 聯絡我們</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">發現日本之美</h1>
+          <p class="hero-subtitle">探索傳統與現代交融的神奇島國</p>
+          <div class="hero-buttons">
+            <a href="./attractions.html" class="btn-primary">
+              <i class="fas fa-map-marked-alt"></i>
+              立即探索
+            </a>
+            <a href="./booking.html" class="btn-secondary">
+              <i class="fas fa-calendar-alt"></i>
+              預約行程
+            </a>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features-section">
+        <div class="container">
+          <h2 class="section-title">為什麼選擇我們？</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-route"></i>
+              </div>
+              <h3>客製化行程</h3>
+              <p>根據您的需求量身打造專屬的日本旅遊體驗</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <h3>專業導遊</h3>
+              <p>經驗豐富的在地導遊帶您深入體驗日本文化</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3>安全保障</h3>
+              <p>完整的旅遊保險與24小時緊急支援服務</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-yen-sign"></i>
+              </div>
+              <h3>超值價格</h3>
+              <p>透明化定價，提供最優惠的旅遊套餐方案</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Destinations Section -->
+      <section class="destinations-section">
+        <div class="container">
+          <h2 class="section-title">熱門旅遊主題</h2>
+          <div class="destinations-grid">
+            <div class="destination-card">
+              <a href="../北海道旅遊網站/index.html" target="_blank" class="destination-link">
+                <div class="destination-image">
+                  <img src="./images/北海道雪景.jpg" alt="北海道雪景" />
+                  <div class="destination-overlay">
+                    <h3>北海道美景</h3>
+                    <p>銀白世界，美不勝收</p>
+                    <span class="destination-btn">探索更多</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="destination-card">
+              <div class="destination-image">
+                <img src="./images/日本壽司.jpg" alt="日本壽司" />
+                <div class="destination-overlay">
+                  <h3>道地美食</h3>
+                  <p>品嚐正宗日式料理</p>
+                  <span class="destination-btn">美食之旅</span>
+                </div>
+              </div>
+            </div>
+            <div class="destination-card">
+              <div class="destination-image">
+                <img src="./images/富士山.jpg" alt="富士山" />
+                <div class="destination-overlay">
+                  <h3>富士山景</h3>
+                  <p>聖山風光與溫泉體驗</p>
+                  <span class="destination-btn">登山之旅</span>
+                </div>
+              </div>
+            </div>
+            <div class="destination-card">
+              <div class="destination-image">
+                <img src="./images/清水寺.jpg" alt="清水寺" />
+                <div class="destination-overlay">
+                  <h3>古都京都</h3>
+                  <p>千年歷史文化巡禮</p>
+                  <span class="destination-btn">文化之旅</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2>準備好開始您的日本之旅了嗎？</h2>
+            <p>立即聯繫我們，讓專業團隊為您規劃完美的旅程</p>
+            <a href="./contact.html" class="cta-btn">
+              <i class="fas fa-phone"></i>
+              立即諮詢
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Section -->
+      <section class="map-section">
+        <div class="container">
+          <h2 class="section-title">探索我們的推薦區域</h2>
+          <div class="map-intro">
+            <p>從北海道的雪國風情到九州的溫泉文化，我們精選的景點遍布日本四大主要區域。每個地區都有其獨特的魅力和必訪景點，為您規劃最完美的日本之旅。</p>
+          </div>
+          
+          <!-- 地區導覽卡片 -->
+          <div class="regions-overview">
+            <div class="region-card" data-region="hokkaido">
+              <div class="region-icon">
+                <i class="fas fa-snowflake"></i>
+              </div>
+              <h3>北海道</h3>
+              <p>雪祭盛典 • 海鮮美食</p>
+              <div class="region-attractions">
+                <span>札幌雪祭</span>
+                <span>函館朝市</span>
+              </div>
+              <button class="region-btn" onclick="showRegionMap('hokkaido')">查看地圖</button>
+            </div>
+            
+            <div class="region-card" data-region="kanto">
+              <div class="region-icon">
+                <i class="fas fa-mountain"></i>
+              </div>
+              <h3>關東地區</h3>
+              <p>聖山富士 • 櫻花勝地</p>
+              <div class="region-attractions">
+                <span>富士山</span>
+                <span>上野公園</span>
+              </div>
+              <button class="region-btn" onclick="showRegionMap('kanto')">查看地圖</button>
+            </div>
+            
+            <div class="region-card" data-region="kansai">
+              <div class="region-icon">
+                <i class="fas fa-torii-gate"></i>
+              </div>
+              <h3>關西地區</h3>
+              <p>古都風韻 • 歷史文化</p>
+              <div class="region-attractions">
+                <span>清水寺</span>
+                <span>大阪城</span>
+              </div>
+              <button class="region-btn" onclick="showRegionMap('kansai')">查看地圖</button>
+            </div>
+            
+            <div class="region-card" data-region="kyushu">
+              <div class="region-icon">
+                <i class="fas fa-spa"></i>
+              </div>
+              <h3>九州地區</h3>
+              <p>溫泉之鄉 • 城堡古蹟</p>
+              <div class="region-attractions">
+                <span>熊本城</span>
+                <span>別府溫泉</span>
+              </div>
+              <button class="region-btn" onclick="showRegionMap('kyushu')">查看地圖</button>
+            </div>
+          </div>
+          
+          <!-- 互動式地圖容器 -->
+          <div class="interactive-map-container">
+            <div class="map-header">
+              <h3 id="map-title">日本全國景點分布</h3>
+              <div class="map-controls">
+                <button class="map-control-btn active" onclick="showAllRegions()">
+                  <i class="fas fa-globe"></i> 全部區域
+                </button>
+                <button class="map-control-btn" onclick="resetToJapan()">
+                  <i class="fas fa-search-minus"></i> 重置視圖
+                </button>
+              </div>
+            </div>
+            <div class="map-container">
+              <iframe
+                id="main-map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563386.054878186!2d132.6888068364258!3d36.204824270815866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2z5pel5pys!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+          
+          <!-- 旅遊小貼士 -->
+          <div class="travel-tips">
+            <h3>旅遊小貼士</h3>
+            <div class="tips-grid">
+              <div class="tip-item">
+                <i class="fas fa-plane-departure"></i>
+                <h4>最佳旅遊時間</h4>
+                <p>春季（3-5月）賞櫻、秋季（9-11月）賞楓，四季各有不同魅力</p>
+              </div>
+              <div class="tip-item">
+                <i class="fas fa-train"></i>
+                <h4>交通建議</h4>
+                <p>購買JR Pass可無限搭乘新幹線，是跨區域旅遊的最佳選擇</p>
+              </div>
+              <div class="tip-item">
+                <i class="fas fa-language"></i>
+                <h4>語言準備</h4>
+                <p>下載翻譯APP，學習基本日語問候語，大部分景點都有中文指標</p>
+              </div>
+              <div class="tip-item">
+                <i class="fas fa-credit-card"></i>
+                <h4>支付方式</h4>
+                <p>現金仍為主流，建議準備足夠現金，大型商店多支援信用卡</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-section">
+            <div class="footer-logo-icon">
+              <i class="fa-solid fa-torii-gate"></i>
+            </div>
+            <h3>2025日本旅遊推薦</h3>
+          </div>
+          <p class="footer-description">
+            專業的日本旅遊規劃服務，為您量身打造最完美的日本之旅。從北海道的雪國風情到九州的溫泉文化，我們帶您深度體驗日本的四季之美。
+          </p>
+          <div class="social-links">
+            <a href="#" title="Facebook"><img src="./Icons/facebook.svg" alt="facebook" /></a>
+            <a href="#" title="Instagram"><img src="./Icons/instagram.svg" alt="instagram" /></a>
+            <a href="#" title="Twitter"><img src="./Icons/twitter.svg" alt="twitter" /></a>
+            <a href="#" title="YouTube"><img src="./Icons/youtube.svg" alt="youtube" /></a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4>快速導覽</h4>
+          <ul>
+            <li><a href="./attractions.html"><i class="fa-solid fa-plane"></i>景點推薦</a></li>
+            <li><a href="./booking.html"><i class="fa-solid fa-book"></i>預約行程</a></li>
+            <li><a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i>會員登入</a></li>
+            <li><a href="./contact.html"><i class="fa-regular fa-address-book"></i>聯絡我們</a></li>
+            <li><a href="../北海道旅遊網站/index.html" target="_blank"><i class="fa-solid fa-snowflake"></i>北海道專區</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>聯絡資訊</h4>
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>彭雲錕</a></li>
+            <li><a href="#"><i class="fa-solid fa-location-dot"></i>新竹縣</a></li>
+            <li><a href="mailto:teddy135790196@gmail.com"><i class="fa-solid fa-envelope"></i>teddy135790196@gmail.com</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i>週一至週五 09:00-18:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2025 日本旅遊推薦. All rights reserved.</p>
+        <p class="credits">由 彭雲錕 規劃設計 | 專業日本旅遊服務</p>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll to top button and header effects
+      window.addEventListener('scroll', function() {
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        const header = document.querySelector('header');
+        const scrollY = window.scrollY;
+        
+        if (scrollY > 300) {
+          scrollIndicator.style.opacity = '0';
+        } else {
+          scrollIndicator.style.opacity = '1';
+        }
+        
+        // Header scroll effect
+        if (scrollY > 100) {
+          header.style.background = 'rgba(255, 255, 255, 0.98)';
+          header.style.backdropFilter = 'blur(20px)';
+          header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)';
+        } else {
+          header.style.background = 'rgba(255, 255, 255, 0.95)';
+          header.style.backdropFilter = 'blur(15px)';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+        }
+      });
+
+      // Smooth scrolling for scroll indicator
+      document.querySelector('.scroll-indicator').addEventListener('click', function() {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      });
+
+      // Hero background slideshow
+      const heroSection = document.querySelector('.hero-section');
+      const images = [
+        './images/日本櫻花.jpg',
+        './images/京都古城.jpg',
+        './images/大阪街頭.jpg'
+      ];
+      let currentImageIndex = 0;
+
+      function changeBackground() {
+        heroSection.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+      }
+
+      // Initialize first image
+      changeBackground();
+      
+      // Change background every 5 seconds
+      setInterval(changeBackground, 5000);
+
+      // 地圖功能
+      const regionMaps = {
+        hokkaido: {
+          title: "北海道地區景點",
+          src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2876543.123456789!2d142.0!3d43.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b4192c4e7e233%3A0x5b3a9b9e4a3e9a4e!2z5YyX5rW36YGT!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
+        },
+        kanto: {
+          title: "關東地區景點",
+          src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1648770.123456789!2d138.0!3d35.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b857628235d%3A0xa11bc3198b956e5e!2z6Zyj5aOr5bGx!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
+        },
+        kansai: {
+          title: "關西地區景點",
+          src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1649843.123456789!2d135.0!3d34.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6553406e2e1%3A0xc55bc16ee46a2fe7!2z5riF5rC06LC6!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
+        },
+        kyushu: {
+          title: "九州地區景點",
+          src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1687432.123456789!2d130.0!3d33.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3540d7a3b8f0b5f7%3A0x2e9e6b9a9f5e9a4e!2z54aK5pys5Z!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw"
+        }
+      };
+
+      function showRegionMap(region) {
+        const mapFrame = document.getElementById('main-map');
+        const mapTitle = document.getElementById('map-title');
+        const controlBtns = document.querySelectorAll('.map-control-btn');
+        
+        if (regionMaps[region]) {
+          mapFrame.src = regionMaps[region].src;
+          mapTitle.textContent = regionMaps[region].title;
+          
+          // 更新控制按鈕狀態
+          controlBtns.forEach(btn => btn.classList.remove('active'));
+          
+          // 高亮對應的地區卡片
+          document.querySelectorAll('.region-card').forEach(card => {
+            card.classList.remove('active');
+          });
+          document.querySelector(`[data-region="${region}"]`).classList.add('active');
+        }
+      }
+
+      function showAllRegions() {
+        const mapFrame = document.getElementById('main-map');
+        const mapTitle = document.getElementById('map-title');
+        const controlBtns = document.querySelectorAll('.map-control-btn');
+        
+        mapFrame.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6563386.054878186!2d132.6888068364258!3d36.204824270815866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2z5pel5pys!5e0!3m2!1szh-TW!2stw!4v1721573243761!5m2!1szh-TW!2stw";
+        mapTitle.textContent = "日本全國景點分布";
+        
+        // 重置按鈕狀態
+        controlBtns.forEach(btn => btn.classList.remove('active'));
+        controlBtns[0].classList.add('active');
+        
+        // 移除地區卡片高亮
+        document.querySelectorAll('.region-card').forEach(card => {
+          card.classList.remove('active');
+        });
+      }
+
+      function resetToJapan() {
+        showAllRegions();
+      }
+
+      // 地區卡片點擊事件
+      document.querySelectorAll('.region-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const region = this.getAttribute('data-region');
+          showRegionMap(region);
+        });
+      });
+    </script>
+  </body>
+</html>

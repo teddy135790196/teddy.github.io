@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="zh-TW">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="北海道, 行程推薦, 旅遊規劃, 經典路線, 深度體驗">
+  <meta name="description" content="北海道精選行程推薦 - 經典雪國之旅、深度文化探索、親子自然體驗，量身打造您的完美旅程">
+  <title>推薦行程 - HOKKAIDO LOVE</title>
+  <link rel="stylesheet" href="navbar.css">
+  <script src="navbar.js" defer></script>
+  <style>
+    /* 極簡現代風格 - 推薦行程頁面 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+      background: #0a0e1a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* 頁面英雄區域 - 行程推薦主題 */
+    .page-hero {
+      height: 70vh;
+      background: 
+        url('images/北海道經典雪國五日遊.png') center/cover,
+        linear-gradient(135deg, #48c6ef 0%, #6f86d6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg, 
+        rgba(72, 198, 239, 0.8) 0%, 
+        rgba(111, 134, 214, 0.8) 100%
+      );
+    }
+
+    /* 旅行足跡動畫效果 */
+    .page-hero::after {
+      content: '✈️ 🚗 🏔️ ♨️ 🍜 🏮 ⛄ 🌸';
+      position: absolute;
+      bottom: 10%;
+      left: -100%;
+      width: 200%;
+      font-size: 1.8rem;
+      white-space: nowrap;
+      animation: travelPath 25s linear infinite;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @keyframes travelPath {
+      0% { transform: translateX(0) rotate(0deg); }
+      25% { transform: translateX(25%) rotate(5deg); }
+      50% { transform: translateX(50%) rotate(-5deg); }
+      75% { transform: translateX(75%) rotate(3deg); }
+      100% { transform: translateX(100%) rotate(0deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 4rem;
+      font-weight: 100;
+      letter-spacing: 6px;
+      margin-bottom: 1rem;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .page-subtitle {
+      font-size: 1.3rem;
+      font-weight: 300;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    /* 主要內容區域 */
+    .main-content {
+      background: #ffffff;
+      color: #0a0e1a;
+      padding: 120px 20px;
+    }
+
+    .content-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 200;
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 4px;
+      color: #2d4a87;
+    }
+
+    .section-description {
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 4rem;
+      color: #666;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 行程網格 */
+    .trips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      margin-bottom: 6rem;
+    }
+
+    .trip-card {
+      background: #f8f9fa;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .trip-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .trip-content {
+      padding: 2.5rem;
+    }
+
+    .trip-duration {
+      background: #48c6ef;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .trip-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #2d4a87;
+      margin-bottom: 1rem;
+    }
+
+    .trip-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .trip-highlights {
+      list-style: none;
+      padding: 0;
+    }
+
+    .trip-highlights li {
+      padding: 0.3rem 0;
+      color: #48c6ef;
+      font-weight: 500;
+    }
+
+    .trip-highlights li:before {
+      content: '✓ ';
+      margin-right: 0.5rem;
+    }
+
+    /* 行程特色區域 */
+    .features-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 6rem 2rem;
+      border-radius: 30px;
+      margin: 4rem 0;
+    }
+
+    .features-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .feature-item p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* 旅遊小貼士 */
+    .tips-section {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      padding: 6rem 2rem;
+      border-radius: 30px;
+      margin: 4rem 0;
+      color: #2d3436;
+    }
+
+    .tips-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: 2px;
+    }
+
+    .tips-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .tip-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .tip-card h3 {
+      color: #6f86d6;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tip-card li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(111, 134, 214, 0.2);
+      line-height: 1.6;
+    }
+
+    .tip-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* 行動呼籲區域 */
+    .cta-section {
+      background: #0a0e1a;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      letter-spacing: 3px;
+    }
+
+    .cta-description {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .modern-button {
+      padding: 18px 40px;
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      margin: 0 10px;
+    }
+
+    .modern-button:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #48c6ef;
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+
+    .modern-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .modern-button:hover:before {
+      left: 0;
+    }
+
+    /* 旅行規劃主題按鈕 */
+    .journey-button {
+      position: relative;
+      display: inline-block;
+      padding: 18px 40px;
+      margin: 0 10px 10px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #667eea 100%);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 45px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 
+        0 8px 25px rgba(79, 172, 254, 0.4),
+        0 0 40px rgba(0, 242, 254, 0.2),
+        inset 0 2px 8px rgba(255, 255, 255, 0.3);
+      animation: journeyPulse 3.5s ease-in-out infinite;
+    }
+
+    @keyframes journeyPulse {
+      0%, 100% {
+        box-shadow: 
+          0 8px 25px rgba(79, 172, 254, 0.4),
+          0 0 40px rgba(0, 242, 254, 0.2),
+          inset 0 2px 8px rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 
+          0 12px 35px rgba(79, 172, 254, 0.6),
+          0 0 60px rgba(0, 242, 254, 0.4),
+          inset 0 3px 12px rgba(255, 255, 255, 0.5);
+        transform: scale(1.02);
+      }
+    }
+
+    .journey-button::before {
+      content: '🗺️';
+      position: absolute;
+      top: -8px;
+      left: 15px;
+      font-size: 18px;
+      animation: mapUnfold 4s ease-in-out infinite;
+    }
+
+    .journey-button::after {
+      content: '✈️';
+      position: absolute;
+      top: -6px;
+      right: 15px;
+      font-size: 16px;
+      animation: planeFly 3s linear infinite;
+    }
+
+    @keyframes mapUnfold {
+      0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% { 
+        transform: scale(1.2) rotate(5deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes planeFly {
+      0% { 
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.6;
+      }
+      50% { 
+        transform: translateX(8px) rotate(15deg);
+        opacity: 1;
+      }
+      100% { 
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.6;
+      }
+    }
+
+    .journey-button:hover {
+      transform: translateY(-6px) scale(1.05);
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+      box-shadow: 
+        0 20px 50px rgba(79, 172, 254, 0.6),
+        0 0 80px rgba(0, 242, 254, 0.5),
+        0 0 120px rgba(255, 255, 255, 0.3);
+    }
+
+    .journey-button:hover::before,
+    .journey-button:hover::after {
+      animation-duration: 1.5s;
+      font-size: 22px;
+    }
+
+    /* 響應式設計 */
+    @media (max-width: 768px) {
+      .page-title { 
+        font-size: 2.5rem; 
+        letter-spacing: 3px;
+      }
+      
+      .page-subtitle { 
+        font-size: 1.1rem; 
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+      
+      .trips-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .features-grid, .tips-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .modern-button {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+        max-width: 300px;
+      }
+    }
+
+    /* 雪人Logo樣式 */
+    .navbar-snowman {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+    }
+
+    .snowman {
+      position: relative;
+      width: 35px;
+      height: 45px;
+      animation: snowmanBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes snowmanBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-2px) rotate(1deg); }
+      50% { transform: translateY(0) rotate(0deg); }
+      75% { transform: translateY(-1px) rotate(-1deg); }
+    }
+
+    .snowman-head {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-eye {
+      position: absolute;
+      top: 4px;
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .left-eye { left: 4px; }
+    .right-eye { right: 4px; }
+
+    .snowman-nose {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      border-top: 4px solid #ff7f50;
+    }
+
+    .snowman-mouth {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 2px;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #2d4a87;
+      border-top: none;
+    }
+
+    .snowman-body {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f8ff 70%, #e6f3ff 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .snowman-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 2px;
+      background: #2d4a87;
+      border-radius: 50%;
+    }
+
+    .snowman-button:first-child { top: 6px; }
+    .snowman-button:last-child { top: 12px; }
+
+    .snowman-hat {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 8px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .snowman-hat::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(135deg, #2d4a87 0%, #667eea 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 2px;
+    }
+
+    .snowman-scarf::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: 3px;
+      width: 4px;
+      height: 8px;
+      background: linear-gradient(90deg, #ff6b6b 0%, #feca57 100%);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .navbar-snowman:hover .snowman {
+      animation: snowmanExcited 0.6s ease-in-out;
+    }
+
+    @keyframes snowmanExcited {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(5deg); }
+      50% { transform: scale(1.05) rotate(0deg); }
+      75% { transform: scale(1.1) rotate(-5deg); }
+    }
+
+    /* 滾動動畫 */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 北海道雪白主題頁腳 */
+    .modern-footer {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 30%, #e3f2fd 70%, #ffffff 100%);
+      color: #2d4a87;
+      padding: 80px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 -10px 40px rgba(102, 126, 234, 0.1);
+    }
+
+    .modern-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(circle at 80% 40%, rgba(227, 242, 253, 0.6) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.9) 3px, transparent 3px),
+        radial-gradient(circle at 90% 80%, rgba(227, 242, 253, 0.5) 2px, transparent 2px);
+      background-size: 150px 150px, 80px 80px, 200px 200px, 120px 120px;
+      animation: snowfallPattern 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .modern-footer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #a8e6cf 25%, #ffffff 50%, #a8e6cf 75%, #667eea 100%);
+      background-size: 300% 100%;
+      animation: snowShimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes snowfallPattern {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-50px) translateX(10px); }
+    }
+
+    @keyframes snowShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .footer-decorations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .footer-decoration {
+      position: absolute;
+      font-size: 2rem;
+      animation: snowDance 30s ease-in-out infinite;
+      color: rgba(102, 126, 234, 0.3);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-decoration:nth-child(1) { 
+      top: 15%; 
+      left: 8%; 
+      animation-delay: 0s; 
+      font-size: 2.5rem;
+    }
+    .footer-decoration:nth-child(2) { 
+      top: 25%; 
+      right: 12%; 
+      animation-delay: 10s; 
+      font-size: 1.8rem;
+    }
+    .footer-decoration:nth-child(3) { 
+      bottom: 35%; 
+      left: 15%; 
+      animation-delay: 20s; 
+      font-size: 2.2rem;
+    }
+    .footer-decoration:nth-child(4) { 
+      bottom: 45%; 
+      right: 20%; 
+      animation-delay: 15s; 
+      font-size: 2rem;
+    }
+
+    @keyframes snowDance {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+        opacity: 0.3; 
+      }
+      25% { 
+        transform: translateY(-20px) rotate(10deg) scale(1.1); 
+        opacity: 0.5; 
+      }
+      50% { 
+        transform: translateY(-15px) rotate(-8deg) scale(0.9); 
+        opacity: 0.4; 
+      }
+      75% { 
+        transform: translateY(-25px) rotate(6deg) scale(1.05); 
+        opacity: 0.6; 
+      }
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #2d4a87 0%, #667eea 30%, #2d4a87 60%, #667eea 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: frostBrandGlow 5s ease-in-out infinite;
+      text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+      position: relative;
+    }
+
+    .footer-brand::before {
+      content: '❄️';
+      position: absolute;
+      left: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      animation: snowflakeRotate 8s linear infinite;
+    }
+
+    .footer-brand::after {
+      content: '❄️';
+      position: absolute;
+      right: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      animation: snowflakeRotate 8s linear infinite reverse;
+    }
+
+    @supports not (-webkit-background-clip: text) {
+      .footer-brand {
+        background: none;
+        -webkit-text-fill-color: initial;
+        color: #2d4a87;
+      }
+    }
+
+    @keyframes frostBrandGlow {
+      0%, 100% { 
+        background-position: 0% 50%; 
+        transform: scale(1);
+      }
+      33% { 
+        background-position: 50% 100%; 
+        transform: scale(1.02);
+      }
+      66% { 
+        background-position: 100% 0%; 
+        transform: scale(0.98);
+      }
+    }
+
+    @keyframes snowflakeRotate {
+      0% { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    .footer-tagline {
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      opacity: 0.8;
+      font-style: italic;
+      color: #5a7ba8;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-link {
+      color: #2d4a87;
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      transition: all 0.4s ease;
+      padding: 12px 18px;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(167, 230, 207, 0.6), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .footer-link:hover {
+      opacity: 1;
+      color: #1a365d;
+      border-color: rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-link:hover::before {
+      left: 100%;
+    }
+
+    .footer-contact {
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      box-shadow: 
+        0 10px 40px rgba(102, 126, 234, 0.1),
+        inset 0 2px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-contact h3 {
+      color: #2d4a87;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-contact p {
+      opacity: 0.9;
+      line-height: 1.6;
+      color: #5a7ba8;
+    }
+
+    .footer-copyright {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .footer-copyright::before {
+      content: '❄️';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #0a0e1a 0%, #2d4a87 100%);
+      padding: 0 15px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-brand {
+        font-size: 2rem;
+        letter-spacing: 3px;
+      }
+
+      .footer-tagline {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .footer-link {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+      }
+
+      .footer-contact {
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .footer-contact h3 {
+        font-size: 1.1rem;
+      }
+
+      .footer-contact p {
+        font-size: 0.9rem;
+      }
+
+      .footer-decoration {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .footer-contact {
+        padding: 1rem;
+      }
+    }
+
+    /* 導航欄Logo樣式 - 北海道雪國主題 */
+    .navbar-logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, #ffffff 0%, #e3f2fd 50%, #ffffff 100%);
+      border: 2px solid transparent;
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(102, 126, 234, 0.2),
+        inset 0 2px 8px rgba(255, 255, 255, 0.4);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: logoBreath 3s ease-in-out infinite;
+    }
+
+    @keyframes logoBreath {
+      0%, 100% {
+        box-shadow: 
+          0 0 20px rgba(255, 255, 255, 0.3),
+          0 0 40px rgba(102, 126, 234, 0.2),
+          inset 0 2px 8px rgba(255, 255, 255, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 
+          0 0 30px rgba(255, 255, 255, 0.5),
+          0 0 60px rgba(102, 126, 234, 0.4),
+          inset 0 3px 12px rgba(255, 255, 255, 0.6);
+        transform: scale(1.03);
+      }
+    }
+
+    .navbar-logo:hover img {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 0 80px rgba(102, 126, 234, 0.5),
+        0 10px 30px rgba(45, 74, 135, 0.3),
+        inset 0 4px 15px rgba(255, 255, 255, 0.7);
+      background: linear-gradient(45deg, #ffffff 0%, #bbdefb 50%, #ffffff 100%);
+      animation: logoSparkle 0.6s ease-out;
+    }
+
+    @keyframes logoSparkle {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); }
+      100% { filter: brightness(1); }
+    }
+
+    /* 為logo添加雪花裝飾 */
+    .navbar-logo {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-logo::before {
+      content: '❄';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: snowflakeRotate 4s linear infinite;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-logo:hover::before {
+      color: rgba(102, 126, 234, 0.8);
+      font-size: 16px;
+      animation-duration: 1s;
+    }
+
+    @keyframes snowflakeRotate {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 導覽列 -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <img src="./images/北海道首頁logo.png" alt="HOKKAIDO LOVE">
+        </a>
+      </div>
+      
+      <ul class="navbar-nav">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="Tourist.html">觀光景點</a></li>
+        <li><a href="About.html">溫泉</a></li>
+        <li><a href="Contact.html">祭典活動</a></li>
+        <li><a href="new.html">推薦行程</a></li>
+        <li><a href="Region.html">區域指南</a></li>
+        <li><a href="Food.html">美食</a></li>
+        <li><a href="Booking.html">預約</a></li>
+        <li><a href="Transport.html">交通指南</a></li>
+      </ul>
+      
+      <!-- 右側雪人logo -->
+      <div class="navbar-snowman">
+        <div class="snowman">
+          <div class="snowman-head">
+            <div class="snowman-eye left-eye"></div>
+            <div class="snowman-eye right-eye"></div>
+            <div class="snowman-nose"></div>
+            <div class="snowman-mouth"></div>
+          </div>
+          <div class="snowman-body">
+            <div class="snowman-button"></div>
+            <div class="snowman-button"></div>
+          </div>
+          <div class="snowman-base"></div>
+          <div class="snowman-hat"></div>
+          <div class="snowman-scarf"></div>
+        </div>
+      </div>
+      
+      <button class="navbar-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- 頁面英雄區域 -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <h1 class="page-title">推薦行程</h1>
+      <p class="page-subtitle">量身打造您的完美旅程<br>從經典路線到深度體驗</p>
+    </div>
+  </section>
+
+  <!-- 主要內容 -->
+  <section class="main-content">
+    <div class="content-container">
+      <h2 class="section-title scroll-reveal">精選行程推薦</h2>
+      <p class="section-description scroll-reveal">
+        無論您是初次造訪北海道，還是想要深度探索，我們都為您精心設計了最適合的行程。
+        從經典雪國之旅到文化深度體驗，滿足不同需求的旅客。
+      </p>
+
+      <div class="trips-grid scroll-reveal">
+        <div class="trip-card">
+          <img src="images/北海道經典雪國五日遊.png" alt="經典雪國五日遊" class="trip-image">
+          <div class="trip-content">
+            <div class="trip-duration">5天4夜</div>
+            <h3 class="trip-title">經典雪國五日遊</h3>
+            <p class="trip-description">
+              最受歡迎的北海道入門行程，涵蓋札幌、小樽、函館三大城市，
+              體驗雪祭、溫泉、美食的經典組合。
+            </p>
+            <ul class="trip-highlights">
+              <li>札幌雪祭 & 大通公園</li>
+              <li>小樽運河浪漫之旅</li>
+              <li>函館山百萬夜景</li>
+              <li>登別溫泉療癒體驗</li>
+              <li>海鮮市場美食巡禮</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <img src="images/北海道深度文化探索六日遊.png" alt="深度文化探索六日遊" class="trip-image">
+          <div class="trip-content">
+            <div class="trip-duration">6天5夜</div>
+            <h3 class="trip-title">深度文化探索六日遊</h3>
+            <p class="trip-description">
+              深入體驗北海道的歷史文化與傳統工藝，參觀博物館、工坊，
+              感受愛努文化與開拓歷史。
+            </p>
+            <ul class="trip-highlights">
+              <li>愛努文化村體驗</li>
+              <li>小樽玻璃工房參觀</li>
+              <li>白色戀人工廠</li>
+              <li>二條市場文化導覽</li>
+              <li>傳統溫泉旅館住宿</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <img src="images/北海道親子自然體驗四日遊.png" alt="親子自然體驗四日遊" class="trip-image">
+          <div class="trip-content">
+            <div class="trip-duration">4天3夜</div>
+            <h3 class="trip-title">親子自然體驗四日遊</h3>
+            <p class="trip-description">
+              專為家庭設計的自然體驗行程，參觀動物園、農場，
+              讓孩子親近大自然，創造美好回憶。
+            </p>
+            <ul class="trip-highlights">
+              <li>旭山動物園企鵝散步</li>
+              <li>富良野薰衣草田</li>
+              <li>美瑛拼布之路</li>
+              <li>農場體驗活動</li>
+              <li>親子友善溫泉住宿</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <img src="images/北海道溫泉美食三日遊.png" alt="溫泉美食三日遊" class="trip-image">
+          <div class="trip-content">
+            <div class="trip-duration">3天2夜</div>
+            <h3 class="trip-title">溫泉美食三日遊</h3>
+            <p class="trip-description">
+              放鬆身心的短程之旅，精選頂級溫泉與美食餐廳，
+              享受純粹的休閒時光。
+            </p>
+            <ul class="trip-highlights">
+              <li>定山溪溫泉住宿</li>
+              <li>米其林餐廳用餐</li>
+              <li>帝王蟹料理體驗</li>
+              <li>和牛燒肉品嚐</li>
+              <li>私人溫泉包租</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 行程特色 -->
+      <div class="features-section scroll-reveal">
+        <h3 class="features-title">🌟 行程特色</h3>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <h3>客製化規劃</h3>
+            <p>根據您的喜好和需求，量身打造專屬行程，確保每一天都精彩難忘。</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🚌</div>
+            <h3>專業導遊</h3>
+            <p>經驗豐富的當地導遊，提供深度文化解說和實用旅遊建議。</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🏨</div>
+            <h3>精選住宿</h3>
+            <p>嚴選各類型優質住宿，從溫泉旅館到現代飯店，滿足不同偏好。</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🍱</div>
+            <h3>美食安排</h3>
+            <p>預約人氣餐廳，品嚐地道北海道美食，讓味蕾也踏上精彩旅程。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 旅遊小貼士 -->
+      <div class="tips-section scroll-reveal">
+        <h3 class="tips-title">💡 旅遊小貼士</h3>
+        <div class="tips-content">
+          <div class="tip-card">
+            <h3>📅 最佳旅遊時間</h3>
+            <ul>
+              <li><strong>春季(4-5月)：</strong>櫻花盛開，氣候宜人</li>
+              <li><strong>夏季(6-8月)：</strong>薰衣草季，戶外活動最佳</li>
+              <li><strong>秋季(9-10月)：</strong>楓葉紅遍，景色壯麗</li>
+              <li><strong>冬季(12-2月)：</strong>雪祭季節，溫泉最舒適</li>
+            </ul>
+          </div>
+
+          <div class="tip-card">
+            <h3>🎒 行李準備</h3>
+            <ul>
+              <li>多層次保暖衣物（冬季必備）</li>
+              <li>防水防滑鞋類</li>
+              <li>相機與充足電池</li>
+              <li>個人常用藥品</li>
+            </ul>
+          </div>
+
+          <div class="tip-card">
+            <h3>💰 預算規劃</h3>
+            <ul>
+              <li>交通：JR Pass 或租車自駕</li>
+              <li>住宿：溫泉旅館較高級飯店</li>
+              <li>餐食：海鮮、和牛、農產品</li>
+              <li>購物：伴手禮、當地特產</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行動呼籲 -->
+  <section class="cta-section">
+    <div class="content-container">
+      <h2 class="cta-title">開始規劃您的北海道之旅</h2>
+      <p class="cta-description">讓我們為您量身打造最完美的旅程</p>
+      <a href="Booking.html" class="journey-button">立即預約</a>
+      <a href="Contact.html" class="journey-button">諮詢客服</a>
+    </div>
+  </section>
+
+  <!-- 北海道主題頁腳 -->
+  <footer class="modern-footer">
+    <div class="footer-decorations">
+      <div class="footer-decoration">🏔️</div>
+      <div class="footer-decoration">❄️</div>
+      <div class="footer-decoration">♨️</div>
+      <div class="footer-decoration">🦀</div>
+    </div>
+    <div class="footer-content">
+      <div class="footer-brand">HOKKAIDO LOVE</div>
+      <div class="footer-tagline">您的北海道旅遊專家，帶您體驗最美的雪國風情</div>
+      
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">🏠 首頁</a>
+        <a href="Tourist.html" class="footer-link">🗾 觀光景點</a>
+        <a href="About.html" class="footer-link">♨️ 溫泉體驗</a>
+        <a href="Food.html" class="footer-link">🍱 美食文化</a>
+        <a href="Contact.html" class="footer-link">🎋 祭典活動</a>
+        <a href="Booking.html" class="footer-link">📅 預約服務</a>
+      </div>
+
+      <div class="footer-contact">
+        <h3>聯絡我們</h3>
+        <p>📧 info@hokkaidolove.com<br>
+        📞 +81-11-2345-6789<br>
+        🏢 札幌市中央區北3条西6丁目</p>
+      </div>
+      
+      <div class="footer-copyright">
+        © 2025 HOKKAIDO LOVE - 北海道旅遊專家 | 全端網頁課程練習使用
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 滾動動畫
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('revealed');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      revealOnScroll();
+    });
+  </script>
+
+</body>
+</html>
