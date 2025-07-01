@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-Hants">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teddy的個人網頁</title>
+    <meta name="description" content="Teddy - 軟體工程師，專長物聯網開發、網頁技術與AIoT應用" />
+    <meta name="keywords" content="軟體工程師,物聯網,網頁開發,AIoT,雲端資料庫" />
+    
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"  
+    />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./bubble.css" />
+    <!-- Chart.js CDN for radar chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- 導航欄 -->
+    <nav>
+      <ul>
+        <li><a href="#about-me"><i class="fas fa-user"></i> 關於 Teddy</a></li>
+        <li><a href="./contact.html"><i class="fas fa-envelope"></i> 聯絡方式</a></li>
+        <li>
+          <a target="_blank" href="./portfolio/圍棋網站/index.html">
+            <i class="fas fa-chess"></i> 圍棋網站 (切版)
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="./portfolio/日本旅遊推薦網站/index.html">
+            <i class="fas fa-map-marked-alt"></i> 日本旅遊推薦 (BootStrap) 
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="./portfolio/北海道旅遊網站/index.html">
+            <i class="fas fa-snowflake"></i> 北海道旅遊 (板模)
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- 背景動畫 -->
+      <div id="background-wrap">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble x8"></div>
+        <div class="bubble x9"></div>
+        <div class="bubble x10"></div>
+      </div>
+      
+      <!-- 主要介紹區域 -->
+      <section class="main-area">
+        <div class="img-area">
+          <img src="./portfolio/Group 1.png" alt="學士照" />
+        </div>
+        <div class="info">
+          <h1>Hi，I'm Teddy!</h1>
+          <div class="motto">「用技術改變生活，讓世界更美好。」</div>
+          <div id="typewriter" class="typewriter"></div>
+          <a href="./contact.html">
+            <i class="fas fa-arrow-right"></i> 了解更多
+          </a>
+          <div class="social-links">
+            <a href="mailto:teddy@email.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/your-github" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://line.me/ti/p/your-line-id" target="_blank" title="Line"><i class="fab fa-line"></i></a>
+            <a href="https://discord.com/users/your-discord-id" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 精選專案區 -->
+      <section class="featured-projects">
+        <h2><i class="fas fa-star"></i> 精選專案</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <h3>日本旅遊推薦網站</h3>
+            <p>結合現代化UI/UX設計，提供日本熱門景點、行程預約與互動地圖。</p>
+            <a href="./portfolio/日本旅遊推薦網站/index.html" target="_blank">查看專案</a>
+          </div>
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-chess-board"></i></div>
+            <h3>圍棋資訊網站</h3>
+            <p>圍棋知識、棋譜分享與互動教學，適合初學者與愛好者。</p>
+            <a href="./portfolio/圍棋網站/index.html" target="_blank">查看專案</a>
+          </div>
+          <div class="project-card">
+            <div class="project-icon"><i class="fas fa-cloud"></i></div>
+            <h3>IoT 空氣品質監控</h3>
+            <p>物聯網感測器即時監控空氣品質，數據雲端儲存與視覺化。</p>
+            <a href="#" target="_blank">了解更多</a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 關於我區域 -->
+      <section class="about-me">
+        <div class="description">
+          <h2>關於我的一些事情</h2>
+          <p>
+            具備資工背景與跨領域實務經驗的軟體開發者，擁有前後端開發、物聯網整合與資料分析能力。今年畢業於中華大學資訊工程系碩士班，主攻 IoT + 環境監測整合打造實用型應用以及商業網站應用。具備 Oracle 與 NVIDIA 雲端與 AI 認證，熟悉專案規劃、系統維運與技術支援。工作態度主動負責，善於跨部門溝通與技術整合，期望在軟體工程領域中發揮實務與學術兼備的綜合能力。
+          </p>
+
+          <div class="progress-bar-area">
+            <h3><i class="fas fa-code"></i> 技術技能</h3>
+            
+            <div class="skill-item">
+              <p><i class="fab fa-js-square"></i> JavaScript，Web Development</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  aria-valuenow="40"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 40%"
+                ></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p><i class="fab fa-vuejs"></i> Vue</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                  role="progressbar"
+                  aria-valuenow="20"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 20%"
+                ></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p><i class="fas fa-server"></i> 後端技術</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                  role="progressbar"
+                  aria-valuenow="20"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 20%"
+                ></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p><i class="fas fa-microchip"></i> 物聯網開發</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                  role="progressbar"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 80%"
+                ></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p><i class="fas fa-database"></i> MySQL</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                  role="progressbar"
+                  aria-valuenow="20"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 20%"
+                ></div>
+              </div>
+            </div>
+            <!-- 技能雷達圖 -->
+            <div class="radar-chart-container">
+              <canvas id="skillsRadar" width="350" height="350" aria-label="技能雷達圖" role="img"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 履歷區域 -->
+      <section class="brand-highlight">
+        <h2><i class="fas fa-user-tie"></i> 我的專業亮點</h2>
+        <div class="brand-slogan">「用AI與雲端技術，打造智慧生活新體驗」</div>
+        <ul class="highlight-list">
+          <li><i class="fas fa-robot"></i> AI 邊緣運算與電腦視覺實作經驗</li>
+          <li><i class="fas fa-globe"></i> Web全端平台獨立開發與UI/UX設計</li>
+          <li><i class="fas fa-broadcast-tower"></i> IoT感測數據雲端串接與行動App開發</li>
+          <li><i class="fas fa-users"></i> 團隊協作與CI/CD自動化部屬實戰</li>
+        </ul>
+        <div class="skills-badges">
+          <span>JavaScript</span>
+          <span>Vue</span>
+          <span>Node.js</span>
+          <span>React Native</span>
+          <span>MySQL</span>
+          <span>Azure</span>
+          <span>Jetson Nano</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>Git</span>
+          <span>BootStrap</span>
+          <span>MariaDB</span>
+          <span>Oracle Cloud</span>
+        </div>
+        <div class="cert-badges">
+          <span><i class="fas fa-certificate"></i> NVIDIA AI Jetson Nano</span>
+          <span><i class="fas fa-certificate"></i> Oracle Cloud</span>
+        
+        </div>
+        <div class="brand-motto">「持續學習，跨界整合，讓技術創造價值！」</div>
+      </section>
+    </main>
+    
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    
+    <!-- Custom JS -->
+    <script src="./app.js"></script>
+    <!-- Chart.js Radar Chart & Typewriter Script -->
+    <script>
+      // 打字機動畫
+      const typewriterText = "我是一位來自新竹縣的軟體工程師，專長在物聯網開發、網頁相關技術與網頁應用開發、AIoT、雲端資料庫管理等等。";
+      const typewriterEl = document.getElementById('typewriter');
+      let i = 0;
+      function typeWriter() {
+        if (i < typewriterText.length) {
+          typewriterEl.innerHTML += typewriterText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+      typeWriter();
+
+      // 技能雷達圖
+      const ctx = document.getElementById('skillsRadar').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['JavaScript', 'Vue', '後端', '物聯網', 'MySQL'],
+          datasets: [{
+            label: '技能熟練度',
+            data: [40, 20, 20, 80, 20],
+            backgroundColor: 'rgba(54, 212, 138, 0.2)',
+            borderColor: 'rgba(54, 212, 138, 1)',
+            pointBackgroundColor: 'rgba(54, 212, 138, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(54, 212, 138, 1)'
+          }]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            r: {
+              angleLines: { display: false },
+              suggestedMin: 0,
+              suggestedMax: 100,
+              pointLabels: { font: { size: 16 } },
+              ticks: { display: false }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
